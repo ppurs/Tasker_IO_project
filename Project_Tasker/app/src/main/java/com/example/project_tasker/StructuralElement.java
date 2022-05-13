@@ -7,6 +7,6 @@ class StructuralElement {
     void editName(){}
     void editDescription(){}
 
-    //String getName() { return name; }
-    //String getDescription() { return description; }
+    String getName() { return name; }
+    String getDescription() { return description; }
 }
