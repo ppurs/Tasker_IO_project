@@ -10,18 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Tasker">
         <activity
-            android:name=".TasksActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CardsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CategoriesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProjectsActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

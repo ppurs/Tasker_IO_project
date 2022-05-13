@@ -29,44 +29,44 @@ public class TaskTests {
 
     @Test
     public void isPriorityEqualOneAfterCreate() {
-        assertEquals( task.getPriority(), 1 );
+        assertEquals( task.priority, 1 );
     }
 
     @Test
     public void isTaskNotDoneAfterCreate() {
-        assertFalse( task.getStatus() );
+        assertFalse( task.status );
     }
 
     @Test
     public void changePriority() {
         task.setPriority( 1 );
-        assertEquals( task.getPriority(), 1 );
+        assertEquals( task.priority, 1 );
 
         task.setPriority( 2 );
-        assertEquals( task.getPriority(), 2 );
+        assertEquals( task.priority, 2 );
 
         task.setPriority( 3 );
-        assertEquals( task.getPriority(), 3 );
+        assertEquals( task.priority, 3 );
 
         task.setPriority( 4 );
-        assertEquals( task.getPriority(), 4 );
+        assertEquals( task.priority, 4 );
 
         task.setPriority( 5 );
-        assertEquals( task.getPriority(), 5 );
+        assertEquals( task.priority, 5 );
     }
 
     @Test
     public void changeStatus_fromNotDoneToDone() {
         task.status = false;
         task.changeStatus();
-        assertTrue( task.getStatus() );
+        assertTrue( task.status );
     }
 
     @Test
     public void changeStatus_fromDoneToNotDone() {
         task.status = true;
         task.changeStatus();
-        assertFalse( task.getStatus() );
+        assertFalse( task.status );
     }
 
 }
