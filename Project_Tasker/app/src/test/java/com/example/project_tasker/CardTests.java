@@ -31,7 +31,10 @@ public class CardTests {
     }
 
     @Test
-    public void addTaskToEmptyProject(){
+    public void cardIsEmpty() { assertTrue( cardToTests.tasks.isEmpty() ); }
+
+    @Test
+    public void addTaskToEmptyCard(){
         assertTrue( cardToTests.addTask( "firstTask", "description" ) );
         assertEquals( cardToTests.tasks.get( 0 ).name, "firstTask" );
     }

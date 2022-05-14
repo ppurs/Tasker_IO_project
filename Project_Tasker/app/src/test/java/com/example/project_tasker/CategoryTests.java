@@ -27,6 +27,9 @@ public class CategoryTests {
     }
 
     @Test
+    public void categoryIsEmpty() { assertTrue( categoryToTests.cards.isEmpty() ); }
+
+    @Test
     public void addCardToEmptyCategory(){
         assertTrue( categoryToTests.addCard( "firstCard", "description" ) );
         assertEquals( categoryToTests.cards.get( 0 ).name, "firstCard" );

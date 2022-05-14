@@ -26,6 +26,9 @@ public class ProjectTests {
     }
 
     @Test
+    public void projectIsEmpty() { assertTrue( projectToTests.categories.isEmpty() ); }
+
+    @Test
     public void addCategoryToEmptyProject(){
         assertTrue( projectToTests.addCategory( "firstCat", "description" ) );
         assertEquals( projectToTests.categories.get( 0 ).name, "firstCat" );
