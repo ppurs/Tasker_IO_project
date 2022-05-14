@@ -10,11 +10,14 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnProjects;
+    public static App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        app = new App();
 
         btnProjects = findViewById(R.id.btnProjects);
 
