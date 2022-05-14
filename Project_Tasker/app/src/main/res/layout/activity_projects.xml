@@ -8,18 +8,17 @@
     tools:context=".ProjectsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewProjects"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/recViewProjects"/>
+        android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddProject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/fabAddProject"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add" />
 
-  </RelativeLayout>
+</RelativeLayout>

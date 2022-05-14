@@ -44,8 +44,9 @@ public class ProjectsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //MainActivity.app.addProject(ProjectsActivity.this);
-
                 //jakos to przeniesc do app.addProject() bo na razie to nie wiem po co ona jest XDDDDD
+
+                //chyba sie nie da xDDDDD, ale inne rzeczy wleciały tam wiec git
                 Intent intent = new Intent(ProjectsActivity.this, AddProjectActivity.class);
                 startActivity(intent);
             }
