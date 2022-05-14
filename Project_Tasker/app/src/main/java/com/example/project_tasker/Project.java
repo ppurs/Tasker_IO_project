@@ -1,7 +1,9 @@
 package com.example.project_tasker;
 
+import java.util.ArrayList;
+
 class Project extends StructuralElement {
-    Category categories[];
+    ArrayList<Category> categories;
 
     void addCategory() {}
     void deleteCategory() {}

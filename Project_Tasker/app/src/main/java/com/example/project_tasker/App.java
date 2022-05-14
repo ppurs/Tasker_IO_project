@@ -1,7 +1,9 @@
 package com.example.project_tasker;
 
+import java.util.ArrayList;
+
 class App {
-    Project projects[];
+    ArrayList<Project> projects;
 
     void addProject(){}
     void deleteProject(){}

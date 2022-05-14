@@ -1,6 +1,6 @@
 package com.example.project_tasker;
 
-class StructuralElement {
+public class StructuralElement {
     protected String name ="";
     protected String description = "";
 

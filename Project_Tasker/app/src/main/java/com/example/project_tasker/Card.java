@@ -1,7 +1,9 @@
 package com.example.project_tasker;
 
+import java.util.ArrayList;
+
 class Card extends StructuralElement {
-    Task tasks[];
+    ArrayList<Task> tasks;
     Category parentCategory;
 
     void addTask(){}
