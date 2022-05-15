@@ -67,6 +67,4 @@ public class CardTests {
         assertNotEquals( cardToTests.tasks.get( cardToTests.tasks.size() - 1  ).name, "notUniqueTask" );
     }
 
-
-
 }
