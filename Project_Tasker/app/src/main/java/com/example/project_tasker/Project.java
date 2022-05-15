@@ -9,7 +9,7 @@ class Project extends StructuralElement {
 
     public Project(String name, String description ) {
         super(name, description);
-        this.categories = null;
+        this.categories = new ArrayList<>();
     }
 
     boolean validation( String categoryName ) {
@@ -21,7 +21,16 @@ class Project extends StructuralElement {
         return true;
     }
 
-    boolean addCategory( String categoryName, String categoryDescription /*kolor trzeba ogarnac*/ ) { return true; }
+    boolean addCategory( String categoryName, String categoryDescription /*kolor trzeba ogarnac*/ ) {
+        boolean temp = validation( categoryName );
+
+        if( temp )
+            categories.add( new Category( categoryName, categoryDescription ) );
+
+        return temp;
+    }
+
     void deleteCategory() {}
     void showStatistics() {}
+
 }

@@ -1,8 +1,7 @@
 package com.example.project_tasker;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
 
 class App {
     ArrayList<Project> projects;

@@ -2,10 +2,19 @@ package com.example.project_tasker;
 
 import java.util.ArrayList;
 
+
 class Category extends StructuralElement {
     ArrayList<Card> cards;
-    Project parentProject;
+    //Project parentProject;
     int color;
+
+    public Category() {}
+
+    public Category( String categoryName, String categoryDescription ) {
+        super( categoryName, categoryDescription);
+        cards = new ArrayList<Card>();
+    }
+
 
     boolean validation( String cardName ) {
         for ( Card temp : cards) {
@@ -22,4 +31,33 @@ class Category extends StructuralElement {
     void setColor( int color ) { this.color = color; }
 
     int getColor () { return color; }
+
+/*
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeTypedList( cards );
+    }
+
+    private Category(Parcel in) {
+        this.cards = in.createTypedArrayList( Card.CREATOR );
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<Category> CREATOR
+            = new Parcelable.Creator<Category>() {
+
+        @Override
+        public Category createFromParcel(Parcel in) {
+            return new Category(in);
+        }
+
+        @Override
+        public Category[] newArray(int size) {
+            return new Category[size];
+        }
+    };*/
 }

@@ -18,6 +18,7 @@ public class AddProjectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle( "Add new project" );
         setContentView(R.layout.activity_add_project);
 
         edtTextProjectName = findViewById(R.id.edtTextProjectName);
