@@ -29,7 +29,7 @@ public class AddProjectActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if ( !MainActivity.app.addProject( edtTextProjectName.getText().toString(), edtTextProjectDescription.getText().toString() )) {
-                    Toast toast = Toast. makeText(getApplicationContext(),"Projekt o podanej nazwie już istnieje.",Toast.LENGTH_SHORT );
+                    Toast toast = Toast. makeText(getApplicationContext(),"Project with this name already exists.",Toast.LENGTH_SHORT );
                     toast.show();
 
                     return;

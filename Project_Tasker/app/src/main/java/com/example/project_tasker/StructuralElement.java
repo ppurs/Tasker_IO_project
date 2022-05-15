@@ -9,23 +9,20 @@ public class StructuralElement {
         this.description = description;
     }
 
-    public StructuralElement()
-    {
+    public StructuralElement() {
         name = "";
         description = "";
     }
 
-    void editName(){}
-    void editDescription(){}
+    void editName( String name ){
+        this.name = name;
+    }
+
+    void editDescription( String description ){
+        this.description = description;
+    }
 
     String getName() { return name; }
     String getDescription() { return description; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

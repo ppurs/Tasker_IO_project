@@ -27,24 +27,39 @@ public class CategoryTests {
     }
 
     @Test
-    public void categoryIsEmpty() { assertTrue( categoryToTests.cards.isEmpty() ); }
+    public void categoryIsEmptyAfterCreate() { assertTrue( categoryToTests.cards.isEmpty() ); }
 
     @Test
-    public void addCardToEmptyCategory(){
+    public void addCard_ToEmptyCategory(){
         assertTrue( categoryToTests.addCard( "firstCard", "description" ) );
         assertEquals( categoryToTests.cards.get( 0 ).name, "firstCard" );
     }
 
     @Test
-    public void addCardWithUniqueName() {
+    public void validation_UniqueName() {
         categoryToTests.addCard( "Unique", "desc");
-        assertTrue( categoryToTests.addCard( "otherUnique", "desc" ) );
+        assertTrue( categoryToTests.validation( "otherUnique" ) );
     }
 
     @Test
-    public void addCardWithNOTUniqueName() {
+    public void validation_NOTUniqueName() {
         categoryToTests.addCard( "notUnique", "desc");
-        assertFalse( categoryToTests.addCard( "notUnique", "desc") );
+        assertFalse( categoryToTests.validation( "notUnique" ) );
+    }
+
+    @Test
+    public void addProject_UniqueName() {
+        categoryToTests.addCard( "uniqueCard", "desc");
+        categoryToTests.addCard( "otherUniqueCard", "desc");
+        assertEquals( categoryToTests.cards.get( categoryToTests.cards.size() - 1  ).name, "otherUniqueCard" );
+    }
+
+    @Test
+    public void addProject_NOTUniqueName() {
+        categoryToTests.addCard( "notUniqueCard", "desc");
+        categoryToTests.addCard( "tempCard", "desc");
+        categoryToTests.addCard( "notUniqueCard", "desc");
+        assertNotEquals( categoryToTests.cards.get( categoryToTests.cards.size() - 1  ).name, "notUniqueCard" );
     }
 
    /* @Test

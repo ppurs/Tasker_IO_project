@@ -93,7 +93,7 @@ public class ProjectsActivity extends AppCompatActivity {
                     description = stringBuffer.toString();
                     stringBuffer.delete(0, stringBuffer.length());
 
-                    MainActivity.app.projects.add( new Project( name, description, null ) );
+                    MainActivity.app.projects.add( new Project( name, description ) );
                 }
             }
         } catch (FileNotFoundException e)
