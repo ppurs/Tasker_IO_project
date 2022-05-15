@@ -7,9 +7,9 @@ class Project extends StructuralElement {
 
     public Project() {}
 
-    public Project(String name, String description, ArrayList<Category> categories) {
+    public Project(String name, String description) {
         super(name, description);
-        this.categories = categories;
+        categories = new ArrayList<>();
     }
 
     boolean addCategory( String categoryName, String categoryDescription /*kolor trzeba ogarnac*/ ) { return true; }

@@ -25,7 +25,7 @@ class App {
                 }
             }
 
-        projects.add( new Project( projectName, projectDescription, null));
+        projects.add( new Project( projectName, projectDescription));
         return true;
     }
 
