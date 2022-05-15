@@ -5,68 +5,68 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TaskTests {
-    private Task task;
+    private Task taskToTests;
 
     @Before
     public void setUp () {
-        task = new Task();
+        taskToTests = new Task();
     }
 
     @Test
     public void createTask(){
-        assertNotNull( task );
+        assertNotNull( taskToTests );
     }
 
     @Test
     public void isNameEmptyAfterCreate() {
-        assertEquals( task.name, "" );
+        assertEquals( taskToTests.name, "" );
     }
 
     @Test
     public void isDescriptionEmptyAfterCreate() {
-        assertEquals( task.name, "" );
+        assertEquals( taskToTests.name, "" );
     }
 
     @Test
     public void isPriorityEqualOneAfterCreate() {
-        assertEquals( task.getPriority(), 1 );
+        assertEquals( taskToTests.getPriority(), 1 );
     }
 
     @Test
     public void isTaskNotDoneAfterCreate() {
-        assertFalse( task.getStatus() );
+        assertFalse( taskToTests.getStatus() );
     }
 
     @Test
     public void changePriority() {
-        task.setPriority( 1 );
-        assertEquals( task.getPriority(), 1 );
+        taskToTests.setPriority( 1 );
+        assertEquals( taskToTests.getPriority(), 1 );
 
-        task.setPriority( 2 );
-        assertEquals( task.getPriority(), 2 );
+        taskToTests.setPriority( 2 );
+        assertEquals( taskToTests.getPriority(), 2 );
 
-        task.setPriority( 3 );
-        assertEquals( task.getPriority(), 3 );
+        taskToTests.setPriority( 3 );
+        assertEquals( taskToTests.getPriority(), 3 );
 
-        task.setPriority( 4 );
-        assertEquals( task.getPriority(), 4 );
+        taskToTests.setPriority( 4 );
+        assertEquals( taskToTests.getPriority(), 4 );
 
-        task.setPriority( 5 );
-        assertEquals( task.getPriority(), 5 );
+        taskToTests.setPriority( 5 );
+        assertEquals( taskToTests.getPriority(), 5 );
     }
 
     @Test
     public void changeStatus_fromNotDoneToDone() {
-        task.status = false;
-        task.changeStatus();
-        assertTrue( task.getStatus() );
+        taskToTests.status = false;
+        taskToTests.changeStatus();
+        assertTrue( taskToTests.getStatus() );
     }
 
     @Test
     public void changeStatus_fromDoneToNotDone() {
-        task.status = true;
-        task.changeStatus();
-        assertFalse( task.getStatus() );
+        taskToTests.status = true;
+        taskToTests.changeStatus();
+        assertFalse( taskToTests.getStatus() );
     }
 
 }

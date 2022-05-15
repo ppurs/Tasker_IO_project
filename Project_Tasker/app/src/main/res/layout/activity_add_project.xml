@@ -41,12 +41,12 @@
         android:id="@+id/edtTextProjectDescription"/>
 
     <Button
+        android:id="@+id/btnAddProjectConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/edtTextProjectDescription"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:text="Add"
-        android:id="@+id/btnAddProjectConfirm"/>
+        android:text="Add" />
 
 </RelativeLayout>

@@ -7,7 +7,7 @@ class Category extends StructuralElement {
     Project parentProject;
     //Color color;
 
-    void addCard(){}
+    boolean addCard( String cardName, String cardDescription ){ return true; }
     void deleteCard(){}
     //void setColor( Color color ) {}
     //getColor

@@ -3,9 +3,11 @@ package com.example.project_tasker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddProjectActivity extends AppCompatActivity {
 
@@ -25,10 +27,14 @@ public class AddProjectActivity extends AppCompatActivity {
         btnAddProjectConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sprawdzenie unikalnosci
 
-                MainActivity.app.projects.add( new Project(edtTextProjectName.getText().toString(),
-                                               edtTextProjectDescription.getText().toString(), null));
+                if ( !MainActivity.app.addProject( edtTextProjectName.getText().toString(), edtTextProjectDescription.getText().toString() )) {
+                    Toast toast = Toast. makeText(getApplicationContext(),"Projekt o podanej nazwie już istnieje.",Toast.LENGTH_SHORT );
+                    toast.show();
+
+                    return;
+                }
+
                 finish();
             }
         });
