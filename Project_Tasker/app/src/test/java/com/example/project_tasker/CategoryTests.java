@@ -62,9 +62,10 @@ public class CategoryTests {
         assertNotEquals( categoryToTests.cards.get( categoryToTests.cards.size() - 1  ).name, "notUniqueCard" );
     }
 
-   /* @Test
+    @Test
     public void setColor_Test() {
-        category.setColor( 9d6292 );
-        assertEquals( category.color, #9d6292);
-    }*/ // ???????????????
+        categoryToTests.setColor( 0x9d6292 );
+        assertEquals( categoryToTests.getColor(), 0x9d6292);
+    }
+
 }

@@ -25,6 +25,8 @@ public class ProjectsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTitle("Projects");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projects);
 
@@ -43,10 +45,6 @@ public class ProjectsActivity extends AppCompatActivity {
         fabAddProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //MainActivity.app.addProject(ProjectsActivity.this);
-                //jakos to przeniesc do app.addProject() bo na razie to nie wiem po co ona jest XDDDDD
-
-                //chyba sie nie da xDDDDD, ale inne rzeczy wleciały tam wiec git
                 Intent intent = new Intent(ProjectsActivity.this, AddProjectActivity.class);
                 startActivity(intent);
             }

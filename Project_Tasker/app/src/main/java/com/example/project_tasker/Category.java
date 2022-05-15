@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class Category extends StructuralElement {
     ArrayList<Card> cards;
     Project parentProject;
-    //Color color;
+    int color;
 
     boolean validation( String cardName ) {
         for ( Card temp : cards) {
@@ -18,6 +18,8 @@ class Category extends StructuralElement {
 
     boolean addCard( String cardName, String cardDescription ){ return true; }
     void deleteCard(){}
-    //void setColor( Color color ) {}
-    //getColor
+
+    void setColor( int color ) { this.color = color; }
+
+    int getColor () { return color; }
 }

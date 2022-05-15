@@ -30,7 +30,6 @@ class App {
         return temp;
     }
 
-    boolean editName() { return true; }
     void deleteProject(){}
     void sendNotifications(){}
 }
