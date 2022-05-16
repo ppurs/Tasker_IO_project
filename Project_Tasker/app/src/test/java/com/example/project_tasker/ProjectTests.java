@@ -47,14 +47,14 @@ public class ProjectTests {
     }
 
     @Test
-    public void addProject_UniqueName() {
+    public void addCategory_UniqueName() {
         projectToTests.addCategory( "uniqueCat", "desc");
         projectToTests.addCategory( "otherUniqueCat", "desc");
         assertEquals( projectToTests.categories.get( projectToTests.categories.size() - 1  ).name, "otherUniqueCat" );
     }
 
     @Test
-    public void addProject_NOTUniqueName() {
+    public void addCategory_NOTUniqueName() {
         projectToTests.addCategory( "notUniqueCat", "desc");
         projectToTests.addCategory( "tempCat", "desc");
         projectToTests.addCategory( "notUniqueCat", "desc");

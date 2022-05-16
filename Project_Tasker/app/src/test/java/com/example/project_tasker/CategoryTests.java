@@ -48,14 +48,14 @@ public class CategoryTests {
     }
 
     @Test
-    public void addProject_UniqueName() {
+    public void addCard_UniqueName() {
         categoryToTests.addCard( "uniqueCard", "desc");
         categoryToTests.addCard( "otherUniqueCard", "desc");
         assertEquals( categoryToTests.cards.get( categoryToTests.cards.size() - 1  ).name, "otherUniqueCard" );
     }
 
     @Test
-    public void addProject_NOTUniqueName() {
+    public void addCard_NOTUniqueName() {
         categoryToTests.addCard( "notUniqueCard", "desc");
         categoryToTests.addCard( "tempCard", "desc");
         categoryToTests.addCard( "notUniqueCard", "desc");

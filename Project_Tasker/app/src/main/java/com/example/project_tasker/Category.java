@@ -8,7 +8,9 @@ class Category extends StructuralElement {
     //Project parentProject;
     int color;
 
-    public Category() {}
+    public Category() {
+        cards = new ArrayList<>();
+    }
 
     public Category( String categoryName, String categoryDescription ) {
         super( categoryName, categoryDescription);

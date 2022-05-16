@@ -4,9 +4,16 @@ import java.util.ArrayList;
 
 class Card extends StructuralElement {
     ArrayList<Task> tasks;
-    Category parentCategory;
+    //Category parentCategory;
 
-    public Card(){}
+    public Card(){
+        tasks = new ArrayList<>();
+    }
+
+    public Card( String cardName, String cardDescription ) {
+        super( cardName, cardDescription);
+        tasks = new ArrayList<>();
+    }
 
     boolean validation( String taskName ) {
         for (Task temp : tasks) {

@@ -53,14 +53,14 @@ public class CardTests {
     }
 
     @Test
-    public void addProject_UniqueName() {
+    public void addTask_UniqueName() {
         cardToTests.addTask( "uniqueTask", "desc");
         cardToTests.addTask( "otherUniqueTask", "desc");
         assertEquals( cardToTests.tasks.get( cardToTests.tasks.size() - 1  ).name, "otherUniqueTask" );
     }
 
     @Test
-    public void addProject_NOTUniqueName() {
+    public void addTask_NOTUniqueName() {
         cardToTests.addTask( "notUniqueTask", "desc");
         cardToTests.addTask( "tempTask", "desc");
         cardToTests.addTask( "notUniqueTask", "desc");

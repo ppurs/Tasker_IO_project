@@ -5,7 +5,9 @@ import java.util.ArrayList;
 class Project extends StructuralElement {
     ArrayList<Category> categories;
 
-    public Project() {}
+    public Project() {
+        categories = new ArrayList<>();
+    }
 
     public Project(String name, String description ) {
         super(name, description);
