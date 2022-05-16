@@ -1,6 +1,7 @@
 package com.example.project_tasker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,10 @@ public class CategoriesRecViewAdapter extends RecyclerView.Adapter<CategoriesRec
         holder.categoriesListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // tutaj nawigacja do widoku kart zamiast toast
-                Toast.makeText(context, categories.get(position).getName() + " selected", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent( context, CardsActivity.class);
+                intent.putExtra( "parentCategoryIndex", categories.indexOf( categories.get( position ) ) );
+                intent.putExtra( "parentProjectIndex", categories.indexOf( categories.get( position ) ) );
+                context.startActivity( intent );
             }
         });
     }
