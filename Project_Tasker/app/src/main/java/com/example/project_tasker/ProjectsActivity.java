@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ProjectsActivity extends AppCompatActivity {
 
-    private RecyclerView recViewProjects;
+    private static RecyclerView recViewProjects;
     private FloatingActionButton fabAddProject;
 
     @Override
@@ -48,6 +48,11 @@ public class ProjectsActivity extends AppCompatActivity {
             }
         });
     }
+
+    public static RecyclerView getRecViewProjects() {
+        return recViewProjects;
+    }
+
     void loadFromInternalStorage()
     {
         try
