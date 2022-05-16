@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -31,26 +32,39 @@ public class CardTests {
     }
 
     @Test
-    public void cardIsEmpty() { assertTrue( cardToTests.tasks.isEmpty() ); }
+    public void cardIsEmptyAfterCreate() { assertTrue( cardToTests.tasks.isEmpty() ); }
 
     @Test
-    public void addTaskToEmptyCard(){
+    public void addTask_ToEmptyCard(){
         assertTrue( cardToTests.addTask( "firstTask", "description" ) );
         assertEquals( cardToTests.tasks.get( 0 ).name, "firstTask" );
     }
 
     @Test
-    public void addTaskWithUniqueName() {
+    public void validation_UniqueName() {
         cardToTests.addTask( "Unique", "desc");
-        assertTrue( cardToTests.addTask( "otherUnique", "desc" ) );
+        assertTrue( cardToTests.validation( "otherUnique" ) );
     }
 
     @Test
-    public void addTaskWithNOTUniqueName() {
+    public void validation_NOTUniqueName() {
         cardToTests.addTask( "notUnique", "desc");
-        assertFalse( cardToTests.addTask( "notUnique", "desc" ) );
+        assertFalse( cardToTests.validation( "notUnique" ) );
     }
 
+    @Test
+    public void addTask_UniqueName() {
+        cardToTests.addTask( "uniqueTask", "desc");
+        cardToTests.addTask( "otherUniqueTask", "desc");
+        assertEquals( cardToTests.tasks.get( cardToTests.tasks.size() - 1  ).name, "otherUniqueTask" );
+    }
 
+    @Test
+    public void addTask_NOTUniqueName() {
+        cardToTests.addTask( "notUniqueTask", "desc");
+        cardToTests.addTask( "tempTask", "desc");
+        cardToTests.addTask( "notUniqueTask", "desc");
+        assertNotEquals( cardToTests.tasks.get( cardToTests.tasks.size() - 1  ).name, "notUniqueTask" );
+    }
 
 }

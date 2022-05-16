@@ -25,6 +25,8 @@ public class ProjectsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTitle("Projects");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projects);
 
@@ -41,13 +43,59 @@ public class ProjectsActivity extends AppCompatActivity {
         fabAddProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //MainActivity.app.addProject(ProjectsActivity.this);
-                //jakos to przeniesc do app.addProject() bo na razie to nie wiem po co ona jest XDDDDD
-
-                //chyba sie nie da xDDDDD, ale inne rzeczy wleciały tam wiec git
                 Intent intent = new Intent(ProjectsActivity.this, AddProjectActivity.class);
                 startActivity(intent);
             }
         });
+    }
+    void loadFromInternalStorage()
+    {
+        try
+        {
+            FileInputStream fileInputStream = openFileInput("appData.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuffer stringBuffer = new StringBuffer();
+
+            String line;
+            String name;
+            String description;
+
+            while ((line = bufferedReader.readLine()) != null)
+            {
+                if (line.equals("<project>"))
+                {
+                    name = "";
+                    description = "";
+
+                    bufferedReader.readLine();
+                    while (!(line = bufferedReader.readLine()).equals("</name>"))
+                    {
+                        stringBuffer.append(line + "\n");
+                    }
+
+                    name = stringBuffer.toString();
+                    stringBuffer.delete(0, stringBuffer.length());
+
+                    bufferedReader.readLine();
+
+                    while (!(line = bufferedReader.readLine()).equals("</desc>"))
+                    {
+                        stringBuffer.append(line + "\n");
+                    }
+
+                    description = stringBuffer.toString();
+                    stringBuffer.delete(0, stringBuffer.length());
+
+                    MainActivity.app.projects.add( new Project( name, description ) );
+                }
+            }
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
