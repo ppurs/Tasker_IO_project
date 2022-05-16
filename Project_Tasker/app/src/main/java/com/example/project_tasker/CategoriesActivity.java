@@ -16,7 +16,7 @@ import org.parceler.Parcels;
 
 public class CategoriesActivity extends AppCompatActivity {
 
-    private RecyclerView recViewCategories;
+    static RecyclerView recViewCategories;
     private FloatingActionButton fabAddCategory;
 
     @Override
@@ -29,7 +29,6 @@ public class CategoriesActivity extends AppCompatActivity {
         this.setTitle( "Project: " + parentProject.getName() );
 
         recViewCategories = findViewById(R.id.recViewCategories);
-
         CategoriesRecViewAdapter categoriesAdapter = new CategoriesRecViewAdapter(this );
         categoriesAdapter.setCategories( parentProject.categories );
 

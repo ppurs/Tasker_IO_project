@@ -18,7 +18,7 @@ public class CategoriesRecViewAdapter extends RecyclerView.Adapter<CategoriesRec
     private ArrayList<Category> categories = new ArrayList<>();
     private Context context;
 
-    public void setCategories(ArrayList<Category> categories) {
+    public void setCategories( ArrayList< Category > categories ) {
         this.categories = categories;
         notifyDataSetChanged();
     }
