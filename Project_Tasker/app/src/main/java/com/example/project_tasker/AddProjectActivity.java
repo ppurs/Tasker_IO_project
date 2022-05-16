@@ -31,9 +31,14 @@ public class AddProjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if ( edtTextProjectName.getText().toString().equals( "" ) ) {
+                    Toast. makeText(getApplicationContext(),"Project name is required.",Toast.LENGTH_SHORT ).show();
+
+                    return;
+                }
+
                 if ( !MainActivity.app.addProject( edtTextProjectName.getText().toString(), edtTextProjectDescription.getText().toString() )) {
-                    Toast toast = Toast. makeText(getApplicationContext(),"Project with this name already exists.",Toast.LENGTH_SHORT );
-                    toast.show();
+                    Toast. makeText(getApplicationContext(),"Project with this name already exists.",Toast.LENGTH_SHORT ).show();
 
                     return;
                 }

@@ -29,6 +29,11 @@ public class AddCategoryActivity extends AppCompatActivity {
         btnAddCategoryConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if ( edtTextCategoryName.getText().toString().equals( "" ) ) {
+                    Toast. makeText(getApplicationContext(),"Category name is required.",Toast.LENGTH_SHORT ).show();
+
+                    return;
+                }
 
                 if ( !parentProject.addCategory( edtTextCategoryName.getText().toString(), edtTextCategoryDescription.getText().toString() )) {
                     Toast toast = Toast. makeText(getApplicationContext(),"Category with this name already exists.",Toast.LENGTH_SHORT );
