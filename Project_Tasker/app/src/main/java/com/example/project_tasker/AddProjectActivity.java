@@ -43,6 +43,7 @@ public class AddProjectActivity extends AppCompatActivity {
                     return;
                 }
 
+                ProjectsActivity.getRecViewProjects().getAdapter().notifyDataSetChanged();
                 finish();
             }
         });

@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddCategoryActivity"
-    android:padding="10dp">
+    tools:context=".AddCategoryActivity">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Category name"
-        android:textSize="30dp"
-        android:id="@+id/txtName"
-        android:layout_marginTop="30dp"/>
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter category name here..."
-        android:layout_below="@+id/txtName"
-        android:layout_marginTop="10dp"
-        android:id="@+id/edtTextCategoryName"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category name"
+            android:textSize="30dp"
+            android:id="@+id/txtName"
+            android:layout_marginTop="30dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Category description"
-        android:textSize="30dp"
-        android:id="@+id/txtDescription"
-        android:layout_below="@+id/edtTextCategoryName"
-        android:layout_marginTop="50dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter category name here..."
+            android:layout_below="@+id/txtName"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtTextCategoryName"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter category description here..."
-        android:layout_below="@+id/txtDescription"
-        android:layout_marginTop="10dp"
-        android:id="@+id/edtTextCategoryDescription"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category description"
+            android:textSize="30dp"
+            android:id="@+id/txtDescription"
+            android:layout_below="@+id/edtTextCategoryName"
+            android:layout_marginTop="50dp"/>
 
-    <Button
-        android:id="@+id/btnAddCategoryConfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edtTextCategoryDescription"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:text="Add" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter category description here..."
+            android:layout_below="@+id/txtDescription"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtTextCategoryDescription"/>
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnAddCategoryConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtTextCategoryDescription"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
+            android:text="Add" />
+
+    </RelativeLayout>
+
+</ScrollView>
