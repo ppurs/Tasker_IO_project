@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCardActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Card name"
+            android:textSize="30dp"
+            android:id="@+id/txtName"
+            android:layout_marginTop="30dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter card name here..."
+            android:layout_below="@+id/txtName"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtTextCardName"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Card description"
+            android:textSize="30dp"
+            android:id="@+id/txtDescription"
+            android:layout_below="@+id/edtTextCardName"
+            android:layout_marginTop="50dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter card description here..."
+            android:layout_below="@+id/txtDescription"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtTextCardDescription"/>
+
+        <Button
+            android:id="@+id/btnAddCardConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtTextCardDescription"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:text="Add" />
+
+    </RelativeLayout>
+
+</ScrollView>

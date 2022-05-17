@@ -38,7 +38,7 @@ public class ProjectsRecViewAdapter extends RecyclerView.Adapter<ProjectsRecView
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from( parent.getContext() ).inflate( R.layout.projects_list_item, parent, false );
 
-        ViewHolder holder = new ViewHolder(view);
+        ProjectsRecViewAdapter.ViewHolder holder = new ProjectsRecViewAdapter.ViewHolder(view);
 
         return holder;
     }
