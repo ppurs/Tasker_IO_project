@@ -52,5 +52,35 @@ public class AppTests {
         assertNotEquals( appToTests.projects.get( appToTests.projects.size() - 1  ).name, "notUniqueProject" );
     }
 
+    @Test
+    public void deleteProject_removeFirst() {
+        appToTests.addProject( "firstProject", "description" );
+
+        appToTests.deleteProject( 0 );
+        assertTrue( appToTests.projects.isEmpty() );
+    }
+
+    @Test
+    public void deleteProject_removeFromMiddle() {
+        appToTests.addProject( "firstProject", "description" );
+        appToTests.addProject( "secondProject", "description" );
+        appToTests.addProject( "thirdProject", "description" );
+
+        appToTests.deleteProject( 1 );
+        assertEquals(  appToTests.projects.size(), 2 );
+        assertEquals( appToTests.projects.get( 0 ).getName(), "firstProject" );
+        assertEquals( appToTests.projects.get( 1 ).getName(), "thirdProject" );
+    }
+
+    @Test
+    public void deleteProject_removeLast() {
+        appToTests.addProject( "firstProject", "description" );
+        appToTests.addProject( "secondProject", "description" );
+
+        appToTests.deleteProject( appToTests.projects.size() - 1 );
+        assertEquals( appToTests.projects.size(), 1 );
+        assertEquals( appToTests.projects.get( 0 ).getName(), "firstProject");
+    }
+
 
 }

@@ -29,6 +29,9 @@ class App {
         return temp;
     }
 
-    void deleteProject(){}
+    void deleteProject( int index ){
+        projects.remove( index );
+    }
+
     void sendNotifications(){}
 }
