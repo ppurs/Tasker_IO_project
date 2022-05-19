@@ -67,4 +67,34 @@ public class CardTests {
         assertNotEquals( cardToTests.tasks.get( cardToTests.tasks.size() - 1  ).name, "notUniqueTask" );
     }
 
+    @Test
+    public void deleteTask_removeFirst() {
+        cardToTests.addTask( "firstTask", "description" );
+
+        cardToTests.deleteTask( 0 );
+        assertTrue( cardToTests.tasks.isEmpty() );
+    }
+
+    @Test
+    public void deleteTask_removeFromMiddle() {
+        cardToTests.addTask( "firstTask", "description" );
+        cardToTests.addTask( "secondTask", "description" );
+        cardToTests.addTask( "thirdTask", "description" );
+
+        cardToTests.deleteTask( 1 );
+        assertEquals( cardToTests.tasks.size(), 2 );
+        assertEquals( cardToTests.tasks.get( 0 ).getName(), "firstTask" );
+        assertEquals( cardToTests.tasks.get( 1 ).getName(), "thirdTask" );
+    }
+
+    @Test
+    public void deleteTask_removeLast() {
+        cardToTests.addTask( "firstTask", "description" );
+        cardToTests.addTask( "secondTask", "description" );
+
+        cardToTests.deleteTask( cardToTests.tasks.size() - 1 );
+        assertEquals( cardToTests.tasks.size(), 1 );
+        assertEquals( cardToTests.tasks.get( 0 ).getName(), "firstTask");
+    }
+
 }

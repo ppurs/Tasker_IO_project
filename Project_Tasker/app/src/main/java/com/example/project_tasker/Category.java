@@ -28,38 +28,13 @@ class Category extends StructuralElement {
     }
 
     boolean addCard( String cardName, String cardDescription ){ return true; }
-    void deleteCard(){}
+
+    void deleteCard( int index ){
+        cards.remove( index );
+    }
 
     void setColor( int color ) { this.color = color; }
 
     int getColor () { return color; }
 
-/*
-    @Override
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeTypedList( cards );
-    }
-
-    private Category(Parcel in) {
-        this.cards = in.createTypedArrayList( Card.CREATOR );
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Parcelable.Creator<Category> CREATOR
-            = new Parcelable.Creator<Category>() {
-
-        @Override
-        public Category createFromParcel(Parcel in) {
-            return new Category(in);
-        }
-
-        @Override
-        public Category[] newArray(int size) {
-            return new Category[size];
-        }
-    };*/
 }
