@@ -27,15 +27,7 @@ class Category extends StructuralElement {
         return true;
     }
 
-    boolean addCard( String cardName, String cardDescription )
-    {
-        boolean temp = validation( cardName );
-
-        if( temp )
-            cards.add( new Card( cardName, cardDescription ) );
-
-        return temp;
-    }
+    boolean addCard( String cardName, String cardDescription ){ return true; }
     void deleteCard(){}
 
     void setColor( int color ) { this.color = color; }

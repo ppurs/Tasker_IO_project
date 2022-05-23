@@ -32,7 +32,9 @@ class Project extends StructuralElement {
         return temp;
     }
 
-    void deleteCategory() {}
+    void deleteCategory( int index ){
+        categories.remove( index );
+    }
     void showStatistics() {}
 
 }

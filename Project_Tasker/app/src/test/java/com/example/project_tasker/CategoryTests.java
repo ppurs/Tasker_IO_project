@@ -68,4 +68,34 @@ public class CategoryTests {
         assertEquals( categoryToTests.getColor(), 0x9d6292);
     }
 
+    @Test
+    public void deleteCard_removeFirst() {
+        categoryToTests.addCard( "firstCard", "description" );
+
+        categoryToTests.deleteCard( 0 );
+        assertTrue( categoryToTests.cards.isEmpty() );
+    }
+
+    @Test
+    public void deleteCard_removeFromMiddle() {
+        categoryToTests.addCard( "firstCard", "description" );
+        categoryToTests.addCard( "secondCard", "description" );
+        categoryToTests.addCard( "thirdCard", "description" );
+
+        categoryToTests.deleteCard( 1 );
+        assertEquals( categoryToTests.cards.size(), 2 );
+        assertEquals( categoryToTests.cards.get( 0 ).getName(), "firstCard" );
+        assertEquals( categoryToTests.cards.get( 1 ).getName(), "thirdCard" );
+    }
+
+    @Test
+    public void deleteCard_removeLast() {
+        categoryToTests.addCard( "firstCard", "description" );
+        categoryToTests.addCard( "secondCard", "description" );
+
+        categoryToTests.deleteCard( categoryToTests.cards.size() - 1 );
+        assertEquals( categoryToTests.cards.size(), 1 );
+        assertEquals( categoryToTests.cards.get( 0 ).getName(), "firstCard");
+    }
+
 }

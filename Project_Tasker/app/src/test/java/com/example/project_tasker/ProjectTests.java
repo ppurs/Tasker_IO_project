@@ -61,5 +61,34 @@ public class ProjectTests {
         assertNotEquals( projectToTests.categories.get( projectToTests.categories.size() - 1  ).name, "notUniqueCat" );
     }
 
+    @Test
+    public void deleteCategory_removeFirst() {
+        projectToTests.addCategory( "firstCat", "description" );
+
+        projectToTests.deleteCategory( 0 );
+        assertTrue( projectToTests.categories.isEmpty() );
+    }
+
+    @Test
+    public void deleteCategory_removeFromMiddle() {
+        projectToTests.addCategory( "firstCat", "description" );
+        projectToTests.addCategory( "secondCat", "description" );
+        projectToTests.addCategory( "thirdCat", "description" );
+
+        projectToTests.deleteCategory( 1 );
+        assertEquals( projectToTests.categories.size(), 2 );
+        assertEquals( projectToTests.categories.get( 0 ).getName(), "firstCat" );
+        assertEquals( projectToTests.categories.get( 1 ).getName(), "thirdCat" );
+    }
+
+    @Test
+    public void deleteCategory_removeLast() {
+        projectToTests.addCategory( "firstCat", "description" );
+        projectToTests.addCategory( "secondCat", "description" );
+
+        projectToTests.deleteCategory( projectToTests.categories.size() - 1 );
+        assertEquals( projectToTests.categories.size(), 1 );
+        assertEquals( projectToTests.categories.get( 0 ).getName(), "firstCat");
+    }
 
 }
