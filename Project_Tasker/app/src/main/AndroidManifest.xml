@@ -25,9 +25,6 @@
             android:name=".AddCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProjectActivity"
-            android:exported="false" />
-        <activity
             android:name=".TasksActivity"
             android:exported="false" />
         <activity
