@@ -28,7 +28,7 @@ import org.w3c.dom.Text;
 
 public class CategoriesActivity extends AppCompatActivity {
 
-    static RecyclerView recViewCategories;
+    private static RecyclerView recViewCategories;
     private FloatingActionButton fabAddCategory;
     private int parentProjectIndex;
     private Project parentProject;
@@ -86,6 +86,10 @@ public class CategoriesActivity extends AppCompatActivity {
         });
     }
 
+    public static RecyclerView getRecViewCategories() {
+        return recViewCategories;
+    }
+
     public void showAlertDialogDelete(View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -96,8 +100,9 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 MainActivity.app.deleteProject( parentProjectIndex );
-                Intent intent = new Intent( CategoriesActivity.this, ProjectsActivity.class );
-                startActivity( intent );
+                ProjectsActivity.getRecViewProjects().getAdapter().notifyDataSetChanged();
+
+                finish();
             }
         });
         builder.setNegativeButton("Cancel", null);
