@@ -6,15 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 
 public class CategoriesActivity extends AppCompatActivity {
@@ -22,7 +31,6 @@ public class CategoriesActivity extends AppCompatActivity {
     static RecyclerView recViewCategories;
     private FloatingActionButton fabAddCategory;
     private int parentProjectIndex;
-    private MenuItem mItem;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,6 +92,29 @@ public class CategoriesActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void showAlertDialogDetails(View view ) {
+
+                final Dialog dialog = new Dialog( CategoriesActivity.this );
+                dialog.setContentView(R.layout.dialog_details);
+
+                TextView textName = (TextView) dialog.findViewById(R.id.txtTitleName);
+                textName.setText( MainActivity.app.projects.get( parentProjectIndex ).getName() );
+                TextView textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
+                textDescription.setText( MainActivity.app.projects.get( parentProjectIndex ).getDescription() );
+
+                ImageButton editButton = (ImageButton) dialog.findViewById(R.id.imageButton );
+
+                editButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(),"edytuj", Toast.LENGTH_SHORT ).show();
+                    }
+                });
+
+                dialog.show();
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item ) {
         switch (item.getItemId()) {
@@ -94,7 +125,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 //costam cos tam
                 return true;
             case R.id.ic_info:
-                //costam cos tam
+                showAlertDialogDetails( this.findViewById(android.R.id.content));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
