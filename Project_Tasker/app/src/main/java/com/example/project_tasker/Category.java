@@ -2,7 +2,6 @@ package com.example.project_tasker;
 
 import java.util.ArrayList;
 
-
 class Category extends StructuralElement {
     ArrayList<Card> cards;
     int color;
