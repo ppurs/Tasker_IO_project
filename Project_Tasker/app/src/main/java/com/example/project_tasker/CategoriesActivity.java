@@ -39,12 +39,8 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         this.setTitle( "Project: " + parentProject.getName() );
-
-        if ( textName != null && textDescription != null )
-        {
-            textName.setText( MainActivity.app.projects.get(parentProjectIndex).getName());
-            textDescription.setText( MainActivity.app.projects.get( parentProjectIndex ).getDescription() );
-        }
+        textName.setText( MainActivity.app.projects.get( parentProjectIndex ).getName() );
+        textDescription.setText( MainActivity.app.projects.get( parentProjectIndex ).getDescription() );
     }
 
     @Override
