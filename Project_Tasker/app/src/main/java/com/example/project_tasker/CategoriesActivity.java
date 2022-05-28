@@ -31,6 +31,17 @@ public class CategoriesActivity extends AppCompatActivity {
     static RecyclerView recViewCategories;
     private FloatingActionButton fabAddCategory;
     private int parentProjectIndex;
+    private Project parentProject;
+    private TextView textName;
+    private TextView textDescription;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        this.setTitle( "Project: " + parentProject.getName() );
+        textName.setText( MainActivity.app.projects.get( parentProjectIndex ).getName() );
+        textDescription.setText( MainActivity.app.projects.get( parentProjectIndex ).getDescription() );
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,8 +61,9 @@ public class CategoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
-        Project parentProject = MainActivity.app.projects.get(parentProjectIndex);
+        parentProject = MainActivity.app.projects.get(parentProjectIndex);
         this.setTitle( "Project: " + parentProject.getName() );
+
 
         recViewCategories = findViewById(R.id.recViewCategories);
         CategoriesRecViewAdapter categoriesAdapter = new CategoriesRecViewAdapter(this );
@@ -97,9 +109,9 @@ public class CategoriesActivity extends AppCompatActivity {
                 final Dialog dialog = new Dialog( CategoriesActivity.this );
                 dialog.setContentView(R.layout.dialog_details);
 
-                TextView textName = (TextView) dialog.findViewById(R.id.txtTitleName);
+                textName = (TextView) dialog.findViewById(R.id.txtTitleName);
                 textName.setText( MainActivity.app.projects.get( parentProjectIndex ).getName() );
-                TextView textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
+                textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
                 textDescription.setText( MainActivity.app.projects.get( parentProjectIndex ).getDescription() );
 
                 ImageButton editButton = (ImageButton) dialog.findViewById(R.id.imageButton );
@@ -107,13 +119,14 @@ public class CategoriesActivity extends AppCompatActivity {
                 editButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(),"edytuj", Toast.LENGTH_SHORT ).show();
+                        Intent intent = new Intent( dialog.getContext(), EditProjectActivity.class );
+                        intent.putExtra( "parentProjectIndex", parentProjectIndex );
+                        startActivity( intent );
                     }
                 });
 
                 dialog.show();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item ) {
@@ -125,7 +138,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 //costam cos tam
                 return true;
             case R.id.ic_info:
-                showAlertDialogDetails( this.findViewById(android.R.id.content));
+                showAlertDialogDetails( this.findViewById(android.R.id.content) );
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
