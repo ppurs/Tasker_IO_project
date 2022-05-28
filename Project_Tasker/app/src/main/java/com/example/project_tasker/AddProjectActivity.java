@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class AddProjectActivity extends AppCompatActivity {
@@ -43,9 +45,28 @@ public class AddProjectActivity extends AppCompatActivity {
                     return;
                 }
 
+                try {
+                    saveNewProjectInInternalStorage( edtTextProjectName.getText().toString(), edtTextProjectDescription.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 ProjectsActivity.getRecViewProjects().getAdapter().notifyDataSetChanged();
                 finish();
             }
         });
+    }
+
+    void saveNewProjectInInternalStorage(String name, String description) throws IOException
+    {
+        File newDir = new File(getFilesDir(), name);
+        newDir.mkdirs();
+
+        File data = new File(newDir, "data.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream(data);
+
+        String textToSave = name + "\n</name>\n" + description;
+        fileOutputStream.write(textToSave.getBytes());
+        fileOutputStream.close();
     }
 }
