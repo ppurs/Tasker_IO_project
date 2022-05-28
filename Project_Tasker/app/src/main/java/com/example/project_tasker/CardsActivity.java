@@ -21,8 +21,6 @@ public class CardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cards);
 
-        //jeszcze ustawienie tytulu
-
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
         Project parentProject = MainActivity.app.projects.get(parentProjectIndex);
 
