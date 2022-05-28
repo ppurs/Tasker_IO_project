@@ -30,7 +30,7 @@ public class TasksActivity extends AppCompatActivity {
         int parentCardIndex = (int) getIntent().getExtras().get("parentCardIndex");
         Card parentCard = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex);
 
-        this.setTitle( parentProject.getName() + ", " + parentCategory.getName() + ", " + parentCategory.getName());
+        this.setTitle( parentProject.getName() + ", " + parentCategory.getName() + ", " + parentCard.getName());
 
         recViewTasks = findViewById(R.id.recViewTasks);
 
