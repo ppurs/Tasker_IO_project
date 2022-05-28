@@ -18,15 +18,19 @@ public class CardsRecViewAdapter extends RecyclerView.Adapter<CardsRecViewAdapte
 {
     private ArrayList<Card> cards = new ArrayList<>();
     private Context context;
+    private int parentProjectIndex;
+    private int parentCategoryIndex;
 
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
         notifyDataSetChanged();
     }
 
-    public CardsRecViewAdapter(Context context)
+    public CardsRecViewAdapter(Context context, int parentProjectIndex, int parentCategoryIndex)
     {
         this.context = context;
+        this.parentProjectIndex = parentProjectIndex;
+        this.parentCategoryIndex = parentCategoryIndex;
     }
 
     @NonNull
@@ -48,6 +52,8 @@ public class CardsRecViewAdapter extends RecyclerView.Adapter<CardsRecViewAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( context, TasksActivity.class);
+                intent.putExtra( "parentProjectIndex", parentProjectIndex );
+                intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
                 intent.putExtra( "parentCardIndex", cards.indexOf( cards.get( position ) ) );
                 context.startActivity( intent );
             }

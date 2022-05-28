@@ -25,7 +25,15 @@ class Card extends StructuralElement {
     }
 
     //w jaki sposob ustalamy priorytet? w oknie dodawania taska czy inaczej?
-    boolean addTask( String taskName, String taskDescription ) { return true; }
+    boolean addTask( String taskName, String taskDescription )
+    {
+        boolean temp = validation( taskName );
+
+        if( temp )
+            tasks.add( new Task( taskName, taskDescription ) );
+
+        return temp;
+    }
 
     void deleteTask( int index ){
         tasks.remove( index );

@@ -30,7 +30,7 @@ public class CardsActivity extends AppCompatActivity {
 
         recViewCards = findViewById(R.id.recViewCards);
 
-        CardsRecViewAdapter cardsAdapter = new CardsRecViewAdapter(this);
+        CardsRecViewAdapter cardsAdapter = new CardsRecViewAdapter(this, parentProjectIndex, parentCategoryIndex);
         cardsAdapter.setCards( parentCategory.cards );
 
         recViewCards.setAdapter(cardsAdapter);

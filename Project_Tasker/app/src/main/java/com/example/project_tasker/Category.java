@@ -35,6 +35,7 @@ class Category extends StructuralElement {
             cards.add( new Card( cardName, cardDescription ) );
 
         return temp;
+
     }
     void deleteCard(){}
 
