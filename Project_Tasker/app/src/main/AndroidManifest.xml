@@ -28,6 +28,12 @@
             android:name=".EditProjectActivity"
             android:exported="false" />
         <activity
+            android:name=".EditCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".TasksActivity"
             android:exported="false" />
         <activity

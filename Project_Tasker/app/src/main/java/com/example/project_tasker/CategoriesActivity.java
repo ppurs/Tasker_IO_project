@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,9 +32,10 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         this.setTitle( "Project: " + parentProject.getName() );
+
         if ( textName != null && textDescription != null ) {
-            textName.setText( MainActivity.app.projects.get( parentProjectIndex ).getName() );
-            textDescription.setText( MainActivity.app.projects.get( parentProjectIndex ).getDescription() );
+            textName.setText( parentProject.getName() );
+            textDescription.setText( parentProject.getDescription() );
         }
     }
 
@@ -106,12 +108,14 @@ public class CategoriesActivity extends AppCompatActivity {
     public void showAlertDialogDetails(View view ) {
 
                 final Dialog dialog = new Dialog( CategoriesActivity.this );
-                dialog.setContentView(R.layout.dialog_details);
+                dialog.setContentView(R.layout.dialog_project_card_details);
+                dialog.getWindow().setLayout( CategoriesActivity.this.getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
+
 
                 textName = (TextView) dialog.findViewById(R.id.txtTitleName);
-                textName.setText( MainActivity.app.projects.get( parentProjectIndex ).getName() );
+                textName.setText( parentProject.getName() );
                 textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
-                textDescription.setText( MainActivity.app.projects.get( parentProjectIndex ).getDescription() );
+                textDescription.setText( parentProject.getDescription() );
 
                 ImageButton editButton = (ImageButton) dialog.findViewById(R.id.imageButton );
 

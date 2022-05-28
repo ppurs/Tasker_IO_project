@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,6 +29,19 @@ public class TasksActivity extends AppCompatActivity {
     private Category parentCategory;
     private int parentCardIndex;
     private Card parentCard;
+    private TextView textName;
+    private TextView textDescription;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        this.setTitle( parentCard.getName() );
+
+        if ( textName != null && textDescription != null ) {
+            textName.setText( parentCard.getName() );
+            textDescription.setText( parentCard.getDescription() );
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,6 +119,34 @@ public class TasksActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void showAlertDialogDetails(View view ) {
+
+        final Dialog dialog = new Dialog( TasksActivity.this );
+        dialog.setContentView(R.layout.dialog_project_card_details);
+        dialog.getWindow().setLayout( TasksActivity.this.getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
+
+
+        textName = (TextView) dialog.findViewById(R.id.txtTitleName);
+        textName.setText( parentCard.getName() );
+        textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
+        textDescription.setText( parentCard.getDescription() );
+
+        ImageButton editButton = (ImageButton) dialog.findViewById(R.id.imageButton );
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( dialog.getContext(), EditCardActivity.class );
+                intent.putExtra( "parentProjectIndex", parentProjectIndex );
+                intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
+                intent.putExtra( "parentCardIndex", parentCardIndex );
+                startActivity( intent );
+            }
+        });
+
+        dialog.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item ) {
         switch (item.getItemId()) {
@@ -109,6 +154,7 @@ public class TasksActivity extends AppCompatActivity {
                 showAlertDialogDelete( this.findViewById(android.R.id.content) );
                 return true;
             case R.id.ic_info:
+                showAlertDialogDetails( this.findViewById(android.R.id.content) );
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
