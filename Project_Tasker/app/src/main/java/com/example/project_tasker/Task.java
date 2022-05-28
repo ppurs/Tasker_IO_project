@@ -8,6 +8,11 @@ class Task extends StructuralElement {
 
     public Task(){}
 
+    public Task(String taskName, String taskDescription)
+    {
+        super(taskName, taskDescription);
+    }
+
     void changeStatus() {
         status = !status;
     }

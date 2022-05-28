@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Tasker">
         <activity
+            android:name=".TaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddTaskActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddCardActivity"
             android:exported="false" />
         <activity

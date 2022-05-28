@@ -18,15 +18,17 @@ import java.util.ArrayList;
 public class CategoriesRecViewAdapter extends RecyclerView.Adapter<CategoriesRecViewAdapter.ViewHolder> {
     private ArrayList<Category> categories = new ArrayList<>();
     private Context context;
+    private int parentProjectIndex;
 
     public void setCategories( ArrayList< Category > categories ) {
         this.categories = categories;
         notifyDataSetChanged();
     }
 
-    public CategoriesRecViewAdapter(Context context)
+    public CategoriesRecViewAdapter(Context context, int parentProjectIndex)
     {
         this.context = context;
+        this.parentProjectIndex = parentProjectIndex;
     }
 
     @NonNull
@@ -49,7 +51,7 @@ public class CategoriesRecViewAdapter extends RecyclerView.Adapter<CategoriesRec
             public void onClick(View view) {
                 Intent intent = new Intent( context, CardsActivity.class);
                 intent.putExtra( "parentCategoryIndex", categories.indexOf( categories.get( position ) ) );
-                intent.putExtra( "parentProjectIndex", categories.indexOf( categories.get( position ) ) );
+                intent.putExtra( "parentProjectIndex", parentProjectIndex );
                 context.startActivity( intent );
             }
         });

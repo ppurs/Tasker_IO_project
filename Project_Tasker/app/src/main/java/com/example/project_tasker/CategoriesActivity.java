@@ -66,7 +66,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
 
         recViewCategories = findViewById(R.id.recViewCategories);
-        CategoriesRecViewAdapter categoriesAdapter = new CategoriesRecViewAdapter(this );
+        CategoriesRecViewAdapter categoriesAdapter = new CategoriesRecViewAdapter(this, parentProjectIndex);
         categoriesAdapter.setCategories( parentProject.categories );
 
         recViewCategories.setAdapter(categoriesAdapter);

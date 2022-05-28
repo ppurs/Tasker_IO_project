@@ -21,8 +21,6 @@ public class CardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cards);
 
-        //jeszcze ustawienie tytulu
-
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
         Project parentProject = MainActivity.app.projects.get(parentProjectIndex);
 
@@ -32,7 +30,7 @@ public class CardsActivity extends AppCompatActivity {
 
         recViewCards = findViewById(R.id.recViewCards);
 
-        CardsRecViewAdapter cardsAdapter = new CardsRecViewAdapter(this);
+        CardsRecViewAdapter cardsAdapter = new CardsRecViewAdapter(this, parentProjectIndex, parentCategoryIndex);
         cardsAdapter.setCards( parentCategory.cards );
 
         recViewCards.setAdapter(cardsAdapter);

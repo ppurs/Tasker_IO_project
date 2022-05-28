@@ -33,7 +33,7 @@ public class AddCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if ( edtTextCardName.getText().toString().equals( "" ) ) {
-                    Toast. makeText(getApplicationContext(),"Card name is required.",Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(getApplicationContext(),"Card name is required.",Toast.LENGTH_SHORT ).show();
 
                     return;
                 }
@@ -44,6 +44,7 @@ public class AddCardActivity extends AppCompatActivity {
 
                     return;
                 }
+
                 CardsActivity.getRecViewCards().getAdapter().notifyDataSetChanged();
                 finish();
             }
