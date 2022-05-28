@@ -30,7 +30,6 @@ public class EditProjectActivity extends AppCompatActivity {
 
         btnEditProjectConfirm = findViewById(R.id.btnEditProjectConfirm);
 
-
         btnEditProjectConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
