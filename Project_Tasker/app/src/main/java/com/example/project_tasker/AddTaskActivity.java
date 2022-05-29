@@ -8,11 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class AddTaskActivity extends AppCompatActivity {
 
     private EditText edtTextTaskName;
     private EditText edtTextTaskDescription;
     private Button btnAddTaskConfirm;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class AddTaskActivity extends AppCompatActivity {
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
 
         Card parentCard = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex);
+
+        memoryManager = new MemoryManager();
 
         edtTextTaskName = findViewById(R.id.edtTextTaskName);
         edtTextTaskDescription = findViewById(R.id.edtTextTaskDescription);
@@ -46,10 +52,15 @@ public class AddTaskActivity extends AppCompatActivity {
                     return;
                 }
 
+                try {
+                    memoryManager.saveDataToInternalStorage(AddTaskActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
                 finish();
             }
         });
-
     }
 }
