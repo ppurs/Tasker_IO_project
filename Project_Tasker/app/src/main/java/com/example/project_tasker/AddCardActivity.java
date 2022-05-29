@@ -8,11 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class AddCardActivity extends AppCompatActivity {
 
     private EditText edtTextCardName;
     private EditText edtTextCardDescription;
     private Button btnAddCardConfirm;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,8 @@ public class AddCardActivity extends AppCompatActivity {
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
 
         Category parentCategory = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex);
+
+        memoryManager = new MemoryManager();
 
         edtTextCardName = findViewById(R.id.edtTextCardName);
         edtTextCardDescription = findViewById(R.id.edtTextCardDescription);
@@ -45,10 +51,15 @@ public class AddCardActivity extends AppCompatActivity {
                     return;
                 }
 
+                try {
+                    memoryManager.saveDataToInternalStorage(AddCardActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 CardsActivity.getRecViewCards().getAdapter().notifyDataSetChanged();
                 finish();
             }
         });
-
     }
 }

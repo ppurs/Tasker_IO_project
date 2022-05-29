@@ -8,21 +8,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class AddProjectActivity extends AppCompatActivity {
 
     private EditText edtTextProjectName;
     private EditText edtTextProjectDescription;
     private Button btnAddProjectConfirm;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle( "Add new project" );
         setContentView(R.layout.activity_add_project);
+
+        memoryManager = new MemoryManager();
 
         edtTextProjectName = findViewById(R.id.edtTextProjectName);
         edtTextProjectDescription = findViewById(R.id.edtTextProjectDescription);
@@ -45,7 +52,7 @@ public class AddProjectActivity extends AppCompatActivity {
                 }
 
                 try {
-                    saveNewProjectInInternalStorage( edtTextProjectName.getText().toString(), edtTextProjectDescription.getText().toString());
+                    memoryManager.saveDataToInternalStorage(AddProjectActivity.this);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -54,18 +61,5 @@ public class AddProjectActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    void saveNewProjectInInternalStorage(String name, String description) throws IOException
-    {
-        File newDir = new File(getFilesDir(), name);
-        newDir.mkdirs();
-
-        File data = new File(newDir, "data.txt");
-        FileOutputStream fileOutputStream = new FileOutputStream(data);
-
-        String textToSave = name + "\n</name>\n" + description;
-        fileOutputStream.write(textToSave.getBytes());
-        fileOutputStream.close();
     }
 }

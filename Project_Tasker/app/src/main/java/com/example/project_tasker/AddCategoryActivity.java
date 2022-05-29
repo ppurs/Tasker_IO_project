@@ -16,6 +16,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     private EditText edtTextCategoryName;
     private EditText edtTextCategoryDescription;
     private Button btnAddCategoryConfirm;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,8 @@ public class AddCategoryActivity extends AppCompatActivity {
 
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
         Project parentProject = MainActivity.app.projects.get(parentProjectIndex);
+
+        memoryManager = new MemoryManager();
 
         edtTextCategoryName = findViewById(R.id.edtTextCategoryName);
         edtTextCategoryDescription = findViewById(R.id.edtTextCategoryDescription);
@@ -46,8 +49,14 @@ public class AddCategoryActivity extends AppCompatActivity {
                     return;
                 }
 
+//                try {
+//                    saveNewCategoryInInternalStorage(edtTextCategoryName.getText().toString(), edtTextCategoryDescription.getText().toString(),parentProject.getName());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+
                 try {
-                    saveNewCategoryInInternalStorage(edtTextCategoryName.getText().toString(), edtTextCategoryDescription.getText().toString(),parentProject.getName());
+                    memoryManager.saveDataToInternalStorage(AddCategoryActivity.this);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -58,22 +67,40 @@ public class AddCategoryActivity extends AppCompatActivity {
         });
     }
 
-    void saveNewCategoryInInternalStorage(String name, String description, String projectName) throws IOException
+    void saveDataToInternalStorage() throws IOException
     {
-        //TODO odnajdz prawidlowy folder
+        //TODO dodac wszystko poza name i desc do pliku appData.txt
+        //TODO jak description to \n to nie dodawac kolejnego \n
+        FileOutputStream fileOutputStream = openFileOutput("appData.txt", MODE_PRIVATE);
+        StringBuilder textToSave = new StringBuilder();
 
-//        File projectDir = getFilesDir();
-//        projectDir = new File(projectDir, projectName);
-//        File newDir = new File(projectDir, name);
-//        newDir.mkdirs();
-//
-//        System.out.println("jajco\n\n" + newDir.toString() + "\n\n" + projectDir.toString());
-//
-//        File data = new File(newDir, "data.txt");
-//        FileOutputStream fileOutputStream = new FileOutputStream(data);
-//
-//        String textToSave = name + "\n</name>\n" + description;
-//        fileOutputStream.write(textToSave.getBytes());
-//        fileOutputStream.close();
+        for( Project project : MainActivity.app.projects )
+        {
+            textToSave.append("<project>\n<name>\n").append(project.getName()).append("\n</name>\n<desc>\n").append(project.getDescription()).append("\n</desc>\n");
+
+            for( Category category : project.categories )
+            {
+                textToSave.append("<cat>\n<name>\n").append(category.getName()).append("\n</name>\n<desc>\n").append(category.getDescription()).append("\n</desc>\n");
+
+                for( Card card : category.cards )
+                {
+                    textToSave.append("<card>\n<name>\n").append(card.getName()).append("\n</name>\n<desc>\n").append(card.getDescription()).append("\n</desc>\n");
+
+                    for( Task task : card.tasks )
+                    {
+                        textToSave.append("<task>\n<name>\n").append(task.getName()).append("\n</name>\n<desc>\n").append(task.getDescription()).append("\n</desc>\n</task>\n");
+                    }
+
+                    textToSave.append("</card>\n");
+                }
+
+                textToSave.append("</cat>\n");
+            }
+
+            textToSave.append("</project>\n");
+        }
+
+        fileOutputStream.write(textToSave.toString().getBytes());
+        fileOutputStream.close();
     }
 }
