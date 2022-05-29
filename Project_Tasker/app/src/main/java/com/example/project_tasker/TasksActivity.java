@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,7 @@ public class TasksActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         this.setTitle( parentCard.getName() );
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable( parentCategory.getColor() ));
 
         if ( textName != null && textDescription != null ) {
             textName.setText( parentCard.getName() );
@@ -70,6 +72,8 @@ public class TasksActivity extends AppCompatActivity {
         parentCard = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex);
 
         this.setTitle( parentProject.getName() + ", " + parentCategory.getName() + ", " + parentCard.getName());
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable( parentCategory.getColor() ));
+
 
         recViewTasks = findViewById(R.id.recViewTasks);
 
@@ -122,7 +126,7 @@ public class TasksActivity extends AppCompatActivity {
     public void showAlertDialogDetails(View view ) {
 
         final Dialog dialog = new Dialog( TasksActivity.this );
-        dialog.setContentView(R.layout.dialog_project_card_details);
+        dialog.setContentView(R.layout.dialog_details);
         dialog.getWindow().setLayout( TasksActivity.this.getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
 
 

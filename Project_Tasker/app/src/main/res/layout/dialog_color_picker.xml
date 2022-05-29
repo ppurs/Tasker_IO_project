@@ -21,7 +21,7 @@
             android:layout_marginTop="20dp">
 
             <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/imageButton1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
@@ -30,7 +30,7 @@
                />
 
             <ImageButton
-                android:id="@+id/imageButton10"
+                android:id="@+id/imageButton2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
@@ -39,7 +39,7 @@
                />
 
             <ImageButton
-                android:id="@+id/imageButton1"
+                android:id="@+id/imageButton3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
@@ -48,7 +48,7 @@
                 />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/imageButton4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
@@ -57,7 +57,7 @@
                 />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/imageButton5"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/ic_color_button"
@@ -73,7 +73,7 @@
             android:layout_marginBottom="10dp">
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/imageButton6"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
@@ -82,7 +82,7 @@
                />
 
             <ImageButton
-                android:id="@+id/imageButton6"
+                android:id="@+id/imageButton7"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
@@ -91,16 +91,16 @@
                 />
 
             <ImageButton
-                android:id="@+id/imageButton7"
+                android:id="@+id/imageButton8"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_color_button"
-                android:backgroundTint="@color/eigh_button_picker"
+                android:backgroundTint="@color/eight_button_picker"
                 />
 
             <ImageButton
-                android:id="@+id/imageButton8"
+                android:id="@+id/imageButton9"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="20dp"
@@ -110,7 +110,7 @@
 
 
             <ImageButton
-                android:id="@+id/imageButton9"
+                android:id="@+id/imageButton10"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/ic_color_button"

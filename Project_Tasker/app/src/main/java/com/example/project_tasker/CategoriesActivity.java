@@ -108,7 +108,7 @@ public class CategoriesActivity extends AppCompatActivity {
     public void showAlertDialogDetails(View view ) {
 
                 final Dialog dialog = new Dialog( CategoriesActivity.this );
-                dialog.setContentView(R.layout.dialog_project_card_details);
+                dialog.setContentView(R.layout.dialog_details);
                 dialog.getWindow().setLayout( CategoriesActivity.this.getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
 
 

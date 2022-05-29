@@ -134,7 +134,10 @@ public class CardsActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //costam
+                Intent intent = new Intent( dialog.getContext(), EditCategoryActivity.class );
+                intent.putExtra( "parentProjectIndex", parentProjectIndex );
+                intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
+                startActivity( intent );
             }
         });
 
