@@ -51,8 +51,8 @@ public class AddCategoryActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                CategoriesActivity.recViewCategories.getAdapter().notifyDataSetChanged();
+              
+                CategoriesActivity.getRecViewCategories().getAdapter().notifyDataSetChanged();
                 finish();
             }
         });
