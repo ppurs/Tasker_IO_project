@@ -1,10 +1,15 @@
 package com.example.project_tasker;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +21,12 @@ import android.widget.Spinner;
 
 import android.widget.TextView;
 
+import androidx.activity.ComponentActivity;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +42,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     private int parentCategoryIndex;
     private int parentCardIndex;
     private Task currTask;
+    private int taskIndex;
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -100,12 +111,13 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent intent = new Intent( dialog.getContext(), EditTaskctivity.class );
+                Intent intent = new Intent( dialog.getContext(), EditTaskActivity.class );
                 intent.putExtra( "parentProjectIndex", parentProjectIndex );
                 intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
                 intent.putExtra( "parentCardIndex", parentCardIndex );
-                //intent.putExtra( "parentTaskIndex", ) //PRZEKAZAC TASKA
-                startActivity( intent );*/
+                intent.putExtra( "parentTaskIndex", taskIndex );
+                dialog.getContext().startActivity( intent );
+                dialog.cancel();
             }
         });
 
@@ -125,12 +137,14 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position) {
         currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
 
-        holder.txtTaskName.setText( tasks.get( position ).getName() );
+        holder.txtTaskName.setText( currTask.getName() );
         holder.checkBoxTaskDone.setChecked(currTask.getStatus());
 
         holder.tasksListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
+                taskIndex = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.indexOf( tasks.get(position) );
                 showTaskDetails( TasksActivity.getRecViewTasks() );
             }
         });
@@ -142,6 +156,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
