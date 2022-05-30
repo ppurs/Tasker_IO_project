@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Project name"
+            android:text="Card name"
             android:textSize="30dp"
             android:id="@+id/txtName"
             android:layout_marginTop="30dp"/>
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Project description"
+            android:text="Card description"
             android:textSize="30dp"
             android:id="@+id/txtDescription"
             android:layout_below="@+id/edtTextCardName"
