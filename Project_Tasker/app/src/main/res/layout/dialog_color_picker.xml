@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp">
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/one_button_picker"
+               />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/two_button_picker"
+               />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/three_button_picker"
+                />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/four_button_picker"
+                />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/five_button_picker"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/six_button_picker"
+               />
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/seven_button_picker"
+                />
+
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/eight_button_picker"
+                />
+
+            <ImageButton
+                android:id="@+id/imageButton9"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/nine_button_picker"
+                android:onClick="buttonClicked"/>
+
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/ten_button_picker"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/eleven_button_picker"
+                />
+
+            <ImageButton
+                android:id="@+id/imageButton12"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/twelve_button_picker"
+                />
+
+            <ImageButton
+                android:id="@+id/imageButton13"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/thirteen_button_picker"
+               />
+
+            <ImageButton
+                android:id="@+id/imageButton14"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/fourteen_button_picker"
+                />
+
+            <ImageButton
+                android:id="@+id/imageButton15"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_color_button"
+                android:backgroundTint="@color/fifteen_button_picker"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

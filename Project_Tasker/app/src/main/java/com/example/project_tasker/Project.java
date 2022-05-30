@@ -23,11 +23,12 @@ class Project extends StructuralElement {
         return true;
     }
 
-    boolean addCategory( String categoryName, String categoryDescription /*kolor trzeba ogarnac*/ ) {
+    boolean addCategory( String categoryName, String categoryDescription, int color ) {
         boolean temp = validation( categoryName );
 
         if( temp )
             categories.add( new Category( categoryName, categoryDescription ) );
+            categories.get( categories.size() - 1 ).setColor( color );
 
         return temp;
     }

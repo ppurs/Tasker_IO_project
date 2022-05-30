@@ -7,4 +7,22 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#efefef</color>
+
+    <color name="one_button_picker">#FFCC00</color>
+    <color name="two_button_picker">#ef6c00</color>
+    <color name="three_button_picker">#e64a19</color>
+    <color name="four_button_picker">#c62828</color>
+    <color name="five_button_picker">#cd6155</color>
+    <color name="six_button_picker">#2e7d32</color>
+    <color name="seven_button_picker">#9e9d24</color>
+    <color name="eight_button_picker">#795548</color>
+    <color name="nine_button_picker">#d81b60</color>
+    <color name="ten_button_picker">#880e4f</color>
+    <color name="eleven_button_picker">#00695c</color>
+    <color name="twelve_button_picker">#28b463</color>
+    <color name="thirteen_button_picker">#283593</color>
+    <color name="fourteen_button_picker">#01579B</color>
+    <color name="fifteen_button_picker">#757575</color>
+
 </resources>
