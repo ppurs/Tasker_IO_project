@@ -48,11 +48,11 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     @Override
     public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position) {
         holder.txtTaskName.setText( tasks.get( position ).getName() );
-        holder.txtTaskDescription.setText( tasks.get( position ).getDescription() );
 
         holder.tasksListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO Tu chyba ma wejsc dialog z opisem, smietnikiem i kredka
                 Intent intent = new Intent( context, TaskActivity.class);
                 intent.putExtra( "parentProjectIndex", parentProjectIndex );
                 intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
@@ -79,7 +79,6 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
             super(itemView);
 
             txtTaskName = itemView.findViewById(R.id.txtTaskName);
-            txtTaskDescription = itemView.findViewById(R.id.txtTaskDescription);
             tasksListItemParent = itemView.findViewById(R.id.tasksListItemParent);
         }
     }
