@@ -1,11 +1,18 @@
 package com.example.project_tasker;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.CheckBox;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +53,48 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         return holder;
     }
 
+    public void showTaskDetails( View view, TextView name, TextView description) {
+        final Dialog dialog = new Dialog( context );
+        dialog.setContentView(R.layout.dialog_task_details);
+        dialog.getWindow().setLayout( ((Activity) context).getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
+
+        /*Spinner spinner = (Spinner) ((Activity) context).findViewById( R.id.spinnerPriority );
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(dialog.getContext(),
+                R.array.priority_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);*/
+
+        TextView textName = (TextView) dialog.findViewById(R.id.txtTitleName);
+        textName.setText( name.getText() );
+        TextView textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
+        textDescription.setText( description.getText() );
+
+        ImageButton editButton = (ImageButton) dialog.findViewById(R.id.btnEditTask );
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* Intent intent = new Intent( dialog.getContext(), EditTaskctivity.class );
+                intent.putExtra( "parentProjectIndex", parentProjectIndex );
+                intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
+                intent.putExtra( "parentCardIndex", parentCardIndex );
+                //intent.putExtra( "parentTaskIndex", ) //PRZEKAZAC TASKA
+                startActivity( intent );*/
+            }
+        });
+
+        ImageButton deleteButton = (ImageButton) dialog.findViewById(R.id.btnDeleteTask );
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //usuwanie taska
+            }
+        });
+
+        dialog.show();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position) {
         Task currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
@@ -56,13 +105,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         holder.tasksListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO Tu chyba ma wejsc dialog z opisem, smietnikiem i kredka
-                Intent intent = new Intent( context, TaskActivity.class); // do wyrzucenia TaskActivity
-                intent.putExtra( "parentProjectIndex", parentProjectIndex );
-                intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
-                intent.putExtra( "parentCardIndex", parentCardIndex );
-                intent.putExtra( "parentTaskIndex", tasks.indexOf( tasks.get( position ) ) );
-                context.startActivity( intent );
+                showTaskDetails( TasksActivity.getRecViewTasks(), holder.txtTaskName, holder.txtTaskDescription );
             }
         });
 

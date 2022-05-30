@@ -21,7 +21,7 @@ public class AddCardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle( "Add new category" );
+        setTitle( "Add new card" );
         setContentView(R.layout.activity_add_card);
 
         int parentCategoryIndex = (int) getIntent().getExtras().get("parentCategoryIndex");

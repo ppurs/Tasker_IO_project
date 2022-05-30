@@ -129,7 +129,6 @@ public class TasksActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_details);
         dialog.getWindow().setLayout( TasksActivity.this.getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
 
-
         textName = (TextView) dialog.findViewById(R.id.txtTitleName);
         textName.setText( parentCard.getName() );
         textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
