@@ -11,6 +11,7 @@ class Task extends StructuralElement {
     public Task(String taskName, String taskDescription)
     {
         super(taskName, taskDescription);
+        deadline = new Date();
     }
 
     void changeStatus() {
@@ -18,6 +19,8 @@ class Task extends StructuralElement {
     }
 
     boolean getStatus() { return status; }
+
+    void setStatus(boolean st) { status = st; }
 
     void setPriority( int priority ) {
         this.priority = priority;

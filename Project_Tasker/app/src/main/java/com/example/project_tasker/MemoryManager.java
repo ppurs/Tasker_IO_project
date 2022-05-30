@@ -21,7 +21,8 @@ public class MemoryManager
 
             for( Category category : project.categories )
             {
-                textToSave.append("<cat>\n<name>\n").append(category.getName()).append("\n</name>\n<desc>\n").append(category.getDescription()).append("\n</desc>\n");
+                textToSave.append("<cat>\n<name>\n").append(category.getName()).append("\n</name>\n<desc>\n").append(category.getDescription()).append("\n</desc>\n<color>\n")
+                          .append(Integer.toString(category.getColor())).append("\n</color>\n");
 
                 for( Card card : category.cards )
                 {
@@ -29,7 +30,17 @@ public class MemoryManager
 
                     for( Task task : card.tasks )
                     {
-                        textToSave.append("<task>\n<name>\n").append(task.getName()).append("\n</name>\n<desc>\n").append(task.getDescription()).append("\n</desc>\n</task>\n");
+                        textToSave.append("<task>\n<name>\n").append(task.getName()).append("\n</name>\n<desc>\n").append(task.getDescription()).append("\n</desc>\n<status>\n");
+                        if (!task.getStatus())
+                        {
+                            textToSave.append("0");
+                        }
+                        else
+                        {
+                            textToSave.append("1");
+                        }
+                        textToSave.append("\n</status>\n<priority>\n").append(Integer.toString(task.getPriority())).append("\n</priority>\n<date>\n").append(task.getDeadline().toString())
+                                  .append("\n</date>\n</task>\n");
                     }
 
                     textToSave.append("</card>\n");
@@ -56,6 +67,10 @@ public class MemoryManager
         String line;
         String name;
         String description;
+        String color;
+        String status;
+        String priority;
+        String date;
 
         Project currProject = null;
         Category currCategory = null;
@@ -113,7 +128,18 @@ public class MemoryManager
                 description = stringBuffer.toString();
                 stringBuffer.setLength(0);
 
+                bufferedReader.readLine();
+                while (!(line = bufferedReader.readLine()).equals("</color>"))
+                {
+                    stringBuffer.append(line + "\n");
+                }
+
+                deleteNewLines(stringBuffer);
+                color = stringBuffer.toString();
+                stringBuffer.setLength(0);
+
                 currCategory = new Category( name, description );
+                currCategory.setColor(Integer.parseInt(color));
                 currProject.categories.add( currCategory );
             }
 
@@ -167,7 +193,46 @@ public class MemoryManager
                 description = stringBuffer.toString();
                 stringBuffer.setLength(0);
 
-                currCard.tasks.add( new Task(name, description) );
+                while (!(line = bufferedReader.readLine()).equals("</status>"))
+                {
+                    stringBuffer.append(line + "\n");
+                }
+
+                deleteNewLines(stringBuffer);
+                status = stringBuffer.toString();
+                stringBuffer.setLength(0);
+
+                while (!(line = bufferedReader.readLine()).equals("</priority>"))
+                {
+                    stringBuffer.append(line + "\n");
+                }
+
+                deleteNewLines(stringBuffer);
+                priority = stringBuffer.toString();
+                stringBuffer.setLength(0);
+
+                while (!(line = bufferedReader.readLine()).equals("</date>"))
+                {
+                    stringBuffer.append(line + "\n");
+                }
+
+                deleteNewLines(stringBuffer);
+                date = stringBuffer.toString();
+                stringBuffer.setLength(0);
+
+                Task newTask = new Task(name, description);
+                //newTask.setPriority(Integer.parseInt(priority));
+
+                newTask.setStatus(status.equals("1"));
+
+//                String[] dateStr = date.split("\\s+");
+//
+//                Date deadline = newTask.getDeadline();
+//                deadline.setDay(Integer.parseInt(dateStr[0]));
+//                deadline.setMonth(Integer.parseInt(dateStr[1]));
+//                deadline.setYear(Integer.parseInt(dateStr[2]));
+
+                currCard.tasks.add( newTask );
             }
         }
     }

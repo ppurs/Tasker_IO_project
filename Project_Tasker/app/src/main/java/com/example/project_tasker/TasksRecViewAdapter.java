@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,18 +48,28 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position) {
+        Task currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
+
         holder.txtTaskName.setText( tasks.get( position ).getName() );
+        holder.checkBoxTaskDone.setChecked(currTask.getStatus());
 
         holder.tasksListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO Tu chyba ma wejsc dialog z opisem, smietnikiem i kredka
-                Intent intent = new Intent( context, TaskActivity.class);
+                Intent intent = new Intent( context, TaskActivity.class); // do wyrzucenia TaskActivity
                 intent.putExtra( "parentProjectIndex", parentProjectIndex );
                 intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
                 intent.putExtra( "parentCardIndex", parentCardIndex );
                 intent.putExtra( "parentTaskIndex", tasks.indexOf( tasks.get( position ) ) );
                 context.startActivity( intent );
+            }
+        });
+
+        holder.checkBoxTaskDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currTask.changeStatus();
             }
         });
     }
@@ -72,13 +83,14 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         private TextView txtTaskName;
-        private TextView txtTaskDescription;
+        private CheckBox checkBoxTaskDone;
         private MaterialCardView tasksListItemParent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtTaskName = itemView.findViewById(R.id.txtTaskName);
+            checkBoxTaskDone = itemView.findViewById(R.id.checkBoxTaskDone);
             tasksListItemParent = itemView.findViewById(R.id.tasksListItemParent);
         }
     }
