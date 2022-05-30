@@ -187,8 +187,6 @@ public class EditCategoryActivity extends AppCompatActivity {
         int parentCategoryIndex = (int) getIntent().getExtras().get("parentCategoryIndex");
         Category category = parentProject.categories.get(parentCategoryIndex);
 
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(category.getColor()));
-
         edtTextCategoryName = (EditText) findViewById(R.id.edtTextCategoryName);
         edtTextCategoryName.setText( category.getName() );
         edtTextCategoryDescription = (EditText) findViewById(R.id.edtTextCategoryDescription);

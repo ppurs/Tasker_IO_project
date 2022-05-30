@@ -13,6 +13,7 @@ class Category extends StructuralElement {
     public Category( String categoryName, String categoryDescription ) {
         super( categoryName, categoryDescription);
         cards = new ArrayList<Card>();
+        color = 0xFF6200EE;
     }
 
 
