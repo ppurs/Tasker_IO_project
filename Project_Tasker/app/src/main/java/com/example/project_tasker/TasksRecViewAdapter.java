@@ -90,29 +90,30 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         Spinner spinner = (Spinner) dialog.findViewById( R.id.spinnerPriority );
         Integer[] priorities = { 1, 2, 3, 4, 5};
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(dialog.getContext(), R.layout.custom_dropdown_list, priorities );
+        spinner.setSelection( currTask.getPriority() - 1  );
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
-                currTask.priority = (int) (spinner.getSelectedItem() );
-                Toast.makeText( dialog.getContext(), "priorytet: " + currTask.priority, Toast.LENGTH_SHORT).show();
+                currTask.setPriority((int) (spinner.getSelectedItem() ));
                 setid();
             }
 
             private void setid() {
-                spinner.setSelection( currTask.priority - 1  );
+                spinner.setSelection( currTask.getPriority() - 1  );
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-                spinner.setSelection( currTask.priority - 1 );
+                spinner.setSelection( currTask.getPriority() - 1 );
             }
         });
 
         spinner.setAdapter(adapter);
+        spinner.setSelection( currTask.getPriority() - 1 );
 
         TextView textName = (TextView) dialog.findViewById(R.id.txtTitleName);
         textName.setText( currTask.getName() );
