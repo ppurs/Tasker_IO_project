@@ -1,32 +1,24 @@
 package com.example.project_tasker;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.ComponentActivity;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -95,11 +87,32 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         dialog.setContentView(R.layout.dialog_task_details);
         dialog.getWindow().setLayout( ((Activity) context).getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
 
-        /*Spinner spinner = (Spinner) dialog.findViewById( R.id.spinnerPriority );
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(dialog.getContext(),
-                R.array.priority_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*/
+        Spinner spinner = (Spinner) dialog.findViewById( R.id.spinnerPriority );
+        Integer[] priorities = { 1, 2, 3, 4, 5};
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(dialog.getContext(), R.layout.custom_dropdown_list, priorities );
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                currTask.priority = (int) (spinner.getSelectedItem() );
+                Toast.makeText( dialog.getContext(), "priorytet: " + currTask.priority, Toast.LENGTH_SHORT).show();
+                setid();
+            }
+
+            private void setid() {
+                spinner.setSelection( currTask.priority - 1  );
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                spinner.setSelection( currTask.priority - 1 );
+            }
+        });
+
+        spinner.setAdapter(adapter);
 
         TextView textName = (TextView) dialog.findViewById(R.id.txtTitleName);
         textName.setText( currTask.getName() );
