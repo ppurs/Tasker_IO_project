@@ -68,7 +68,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).deleteTask( tasks.indexOf( currTask ) );
+                MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).deleteTask( taskIndex );
                 dialog.cancel();
                 prevDialog.cancel();
 
@@ -103,6 +103,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
 
             private void setid() {
                 spinner.setSelection( currTask.getPriority() - 1  );
+
 
             }
 
