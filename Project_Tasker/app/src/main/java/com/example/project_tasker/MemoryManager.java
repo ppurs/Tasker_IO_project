@@ -166,6 +166,11 @@ public class MemoryManager
                 description = stringBuffer.toString();
                 stringBuffer.setLength(0);
 
+                if (currCard != null)
+                {
+                    currCard.sortTasksByPriority();
+                }
+
                 currCard = new Card( name, description );
                 currCategory.cards.add( currCard );
             }

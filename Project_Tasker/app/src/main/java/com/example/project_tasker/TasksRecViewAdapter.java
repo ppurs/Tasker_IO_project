@@ -114,6 +114,9 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).sortTasksByPriority();
+                notifyDataSetChanged();
             }
 
             private void setid() {

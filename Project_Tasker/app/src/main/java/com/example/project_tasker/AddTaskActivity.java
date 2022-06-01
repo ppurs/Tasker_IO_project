@@ -58,6 +58,8 @@ public class AddTaskActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                parentCard.sortTasksByPriority();
+
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
                 finish();
             }

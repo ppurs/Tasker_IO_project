@@ -1,6 +1,9 @@
 package com.example.project_tasker;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 class Card extends StructuralElement {
     ArrayList<Task> tasks;
@@ -35,5 +38,15 @@ class Card extends StructuralElement {
 
     void deleteTask( int index ){
         tasks.remove( index );
+    }
+
+    void sortTasksByPriority()
+    {
+        Collections.sort(tasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.getPriority() - task2.getPriority();
+            }
+        });
     }
 }
