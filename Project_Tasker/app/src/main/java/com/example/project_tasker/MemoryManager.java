@@ -192,6 +192,7 @@ public class MemoryManager
                 deleteNewLines(stringBuffer);
                 description = stringBuffer.toString();
                 stringBuffer.setLength(0);
+                bufferedReader.readLine();
 
                 while (!(line = bufferedReader.readLine()).equals("</status>"))
                 {
@@ -201,6 +202,7 @@ public class MemoryManager
                 deleteNewLines(stringBuffer);
                 status = stringBuffer.toString();
                 stringBuffer.setLength(0);
+                bufferedReader.readLine();
 
                 while (!(line = bufferedReader.readLine()).equals("</priority>"))
                 {
@@ -210,6 +212,7 @@ public class MemoryManager
                 deleteNewLines(stringBuffer);
                 priority = stringBuffer.toString();
                 stringBuffer.setLength(0);
+                bufferedReader.readLine();
 
                 while (!(line = bufferedReader.readLine()).equals("</date>"))
                 {
@@ -221,16 +224,15 @@ public class MemoryManager
                 stringBuffer.setLength(0);
 
                 Task newTask = new Task(name, description);
-                //newTask.setPriority(Integer.parseInt(priority));
-
+                newTask.setPriority(Integer.parseInt(priority));
                 newTask.setStatus(status.equals("1"));
 
-//                String[] dateStr = date.split("\\s+");
-//
-//                Date deadline = newTask.getDeadline();
-//                deadline.setDay(Integer.parseInt(dateStr[0]));
-//                deadline.setMonth(Integer.parseInt(dateStr[1]));
-//                deadline.setYear(Integer.parseInt(dateStr[2]));
+                String[] dateStr = date.split("\\s+");
+
+                Date deadline = newTask.getDeadline();
+                deadline.setDay(Integer.parseInt(dateStr[0]));
+                deadline.setMonth(Integer.parseInt(dateStr[1]));
+                deadline.setYear(Integer.parseInt(dateStr[2]));
 
                 currCard.tasks.add( newTask );
             }

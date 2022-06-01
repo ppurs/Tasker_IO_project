@@ -108,6 +108,12 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
                                        int arg2, long arg3) {
                 currTask.setPriority((int) (spinner.getSelectedItem() ));
                 setid();
+
+                try {
+                    memoryManager.saveDataToInternalStorage(context);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             private void setid() {
@@ -158,17 +164,17 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position) {
-        currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
+    public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position)
+    {
+        holder.txtTaskName.setText(tasks.get( position ).getName());
+        holder.checkBoxTaskDone.setChecked(tasks.get( position ).getStatus());
 
-        holder.txtTaskName.setText( currTask.getName() );
-        holder.checkBoxTaskDone.setChecked(currTask.getStatus());
+        taskIndex = tasks.indexOf( tasks.get(position) );
 
         holder.tasksListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
-                taskIndex = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.indexOf( tasks.get(position) );
+                currTask = tasks.get(tasks.indexOf(tasks.get(position)));
                 showTaskDetails( TasksActivity.getRecViewTasks() );
             }
         });
@@ -176,7 +182,13 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         holder.checkBoxTaskDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currTask.changeStatus();
+                tasks.get( position ).changeStatus();
+
+                try {
+                    memoryManager.saveDataToInternalStorage(context);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
