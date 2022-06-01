@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
+
 public class CategoriesActivity extends AppCompatActivity {
 
     private static RecyclerView recViewCategories;
@@ -27,6 +29,7 @@ public class CategoriesActivity extends AppCompatActivity {
     private Project parentProject;
     private TextView textName;
     private TextView textDescription;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onRestart() {
@@ -55,6 +58,8 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+
+        memoryManager = new MemoryManager();
 
         parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
         parentProject = MainActivity.app.projects.get(parentProjectIndex);
@@ -95,6 +100,12 @@ public class CategoriesActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 MainActivity.app.deleteProject( parentProjectIndex );
                 ProjectsActivity.getRecViewProjects().getAdapter().notifyDataSetChanged();
+
+                try {
+                    memoryManager.saveDataToInternalStorage(CategoriesActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 finish();
             }

@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
+
 public class TasksActivity extends AppCompatActivity {
 
     private static RecyclerView recViewTasks;
@@ -33,6 +35,7 @@ public class TasksActivity extends AppCompatActivity {
     private Card parentCard;
     private TextView textName;
     private TextView textDescription;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onRestart() {
@@ -62,6 +65,8 @@ public class TasksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
+
+        memoryManager = new MemoryManager();
 
         parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
         parentProject = MainActivity.app.projects.get(parentProjectIndex);
@@ -113,6 +118,12 @@ public class TasksActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 parentCategory.deleteCard( parentCardIndex );
                 CardsActivity.getRecViewCards().getAdapter().notifyDataSetChanged();
+
+                try {
+                    memoryManager.saveDataToInternalStorage(TasksActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 finish();
 

@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapter.ViewHolder>
@@ -35,6 +36,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     private int parentCardIndex;
     private Task currTask;
     private int taskIndex;
+    private MemoryManager memoryManager;
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -47,6 +49,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         this.parentProjectIndex = parentProjectIndex;
         this.parentCategoryIndex = parentCategoryIndex;
         this.parentCardIndex = parentCardIndex;
+        memoryManager = new MemoryManager();
     }
 
     @NonNull
@@ -71,6 +74,12 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
                 MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).deleteTask( taskIndex );
                 dialog.cancel();
                 prevDialog.cancel();
+
+                try {
+                    memoryManager.saveDataToInternalStorage(context);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
 
