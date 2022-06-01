@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="13dp">
+
+    <TextView
+        android:id="@+id/txtStatsProjectName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Statistics for project: "
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/txtStatsTotalTasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Total tasks in project: "
+        android:layout_below="@+id/txtStatsProjectName"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtStatsTotalCards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Total cards in project: "
+        android:layout_below="@+id/txtStatsTotalTasks"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtStatsTotalCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Total categories in project: "
+        android:layout_below="@+id/txtStatsTotalCards"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtStatsTasksFinished"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Tasks finished: "
+        android:layout_below="@+id/txtStatsTotalCategories"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtStatsTasksUnfinished"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Tasks unfinished: "
+        android:layout_below="@+id/txtStatsTasksFinished"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/txtStatsPercentageOfCompletion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Percentage of completion: "
+        android:layout_below="@+id/txtStatsTasksUnfinished"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

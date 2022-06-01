@@ -29,6 +29,13 @@ public class CategoriesActivity extends AppCompatActivity {
     private Project parentProject;
     private TextView textName;
     private TextView textDescription;
+    private TextView txtStatsProjectName;
+    private TextView txtStatsTotalTasks;
+    private TextView txtStatsTotalCards;
+    private TextView txtStatsTotalCategories;
+    private TextView txtStatsTasksFinished;
+    private TextView txtStatsTasksUnfinished;
+    private TextView txtStatsPercentageOfCompletion;
     private MemoryManager memoryManager;
 
     @Override
@@ -122,7 +129,6 @@ public class CategoriesActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_details);
                 dialog.getWindow().setLayout( CategoriesActivity.this.getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
 
-
                 textName = (TextView) dialog.findViewById(R.id.txtTitleName);
                 textName.setText( parentProject.getName() );
                 textDescription = (TextView) dialog.findViewById(R.id.txtDescription );
@@ -142,6 +148,70 @@ public class CategoriesActivity extends AppCompatActivity {
                 dialog.show();
     }
 
+    public void showDialogStatistics(View view)
+    {
+        Project project = MainActivity.app.projects.get(parentProjectIndex);
+
+        final Dialog dialog = new Dialog( CategoriesActivity.this );
+        dialog.setContentView(R.layout.statistics);
+        dialog.getWindow().setLayout( CategoriesActivity.this.getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
+
+        txtStatsProjectName = dialog.findViewById(R.id.txtStatsProjectName);
+        txtStatsTotalTasks = dialog.findViewById(R.id.txtStatsTotalTasks);
+        txtStatsTotalCards = dialog.findViewById(R.id.txtStatsTotalCards);
+        txtStatsTotalCategories = dialog.findViewById(R.id.txtStatsTotalCategories);
+        txtStatsTasksFinished = dialog.findViewById(R.id.txtStatsTasksFinished);
+        txtStatsTasksUnfinished = dialog.findViewById(R.id.txtStatsTasksUnfinished);
+        txtStatsPercentageOfCompletion = dialog.findViewById(R.id.txtStatsPercentageOfCompletion);
+
+        int totalTasks = 0;
+        int totalCards = 0;
+        int totalCategories = 0;
+        int tasksFinished = 0;
+        int tasksUnfinished = 0;
+
+        for(Category category : project.categories)
+        {
+            totalCategories++;
+
+            for(Card card : category.cards)
+            {
+                totalCards++;
+
+                for(Task task : card.tasks)
+                {
+                    totalTasks++;
+
+                    if(task.getStatus())
+                    {
+                        tasksFinished++;
+                    }
+                    else
+                    {
+                        tasksUnfinished++;
+                    }
+                }
+            }
+        }
+
+        String percentageOfCompletion = "N/A";
+
+        if (totalTasks > 0)
+        {
+            percentageOfCompletion = Double.toString(Math.round(10000.0 * (double) tasksFinished / (double) totalTasks) / 100.0) + "%";
+        }
+
+        txtStatsProjectName.setText("Statistics for project: " + project.getName());
+        txtStatsTotalTasks.setText("Total tasks: " + totalTasks);
+        txtStatsTotalCards.setText("Total cards: " + totalCards);
+        txtStatsTotalCategories.setText("Total categories: " + totalCategories);
+        txtStatsTasksFinished.setText("Tasks finished: " + tasksFinished);
+        txtStatsTasksUnfinished.setText("Tasks unfinished: " + tasksUnfinished);
+        txtStatsPercentageOfCompletion.setText("Percentage of completion: " + percentageOfCompletion);
+
+        dialog.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item ) {
         switch (item.getItemId()) {
@@ -149,7 +219,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 showAlertDialogDelete( this.findViewById(android.R.id.content) );
                 return true;
             case R.id.ic_stats:
-                //costam cos tam
+                showDialogStatistics( this.findViewById(android.R.id.content) );
                 return true;
             case R.id.ic_info:
                 showAlertDialogDetails( this.findViewById(android.R.id.content) );
