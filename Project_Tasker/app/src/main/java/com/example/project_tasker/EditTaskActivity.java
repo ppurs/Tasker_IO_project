@@ -10,11 +10,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 
 public class EditTaskActivity extends AppCompatActivity {
     private EditText edtTextTaskName;
     private EditText edtTextTaskDescription;
     private Button btnEditTaskConfirm;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class EditTaskActivity extends AppCompatActivity {
 
         int parentTaskIndex = (int) getIntent().getExtras().get("parentTaskIndex");
         Task task = card.tasks.get( parentTaskIndex );
+
+        memoryManager = new MemoryManager();
 
         edtTextTaskName = findViewById(R.id.edtTextTaskName);
         edtTextTaskName.setText( task.getName() );
@@ -59,6 +64,12 @@ public class EditTaskActivity extends AppCompatActivity {
 
                 task.editName( edtTextTaskName.getText().toString() );
                 task.editDescription( edtTextTaskDescription.getText().toString() );
+
+                try {
+                    memoryManager.saveDataToInternalStorage(EditTaskActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
 

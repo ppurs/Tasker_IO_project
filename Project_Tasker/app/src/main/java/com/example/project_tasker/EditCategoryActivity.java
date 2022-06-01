@@ -20,6 +20,7 @@ public class EditCategoryActivity extends AppCompatActivity {
     public int colorChanged;
     public EditText edtTextCategoryDescription;
     public EditText edtTextCategoryName;
+    private MemoryManager memoryManager;
 
     public void showColorPicker(View view) {
         LayoutInflater layoutInflater = getLayoutInflater();
@@ -187,6 +188,8 @@ public class EditCategoryActivity extends AppCompatActivity {
         int parentCategoryIndex = (int) getIntent().getExtras().get("parentCategoryIndex");
         Category category = parentProject.categories.get(parentCategoryIndex);
 
+        memoryManager = new MemoryManager();
+
         edtTextCategoryName = (EditText) findViewById(R.id.edtTextCategoryName);
         edtTextCategoryName.setText( category.getName() );
         edtTextCategoryDescription = (EditText) findViewById(R.id.edtTextCategoryDescription);
@@ -221,6 +224,11 @@ public class EditCategoryActivity extends AppCompatActivity {
                 category.editDescription(edtTextCategoryDescription.getText().toString());
                 category.setColor( colorChanged );
 
+                try {
+                    memoryManager.saveDataToInternalStorage(EditCategoryActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 CategoriesActivity.getRecViewCategories().getAdapter().notifyDataSetChanged();
                 finish();

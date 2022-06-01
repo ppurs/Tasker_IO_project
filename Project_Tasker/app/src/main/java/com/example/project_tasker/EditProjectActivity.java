@@ -8,10 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 public class EditProjectActivity extends AppCompatActivity {
     private EditText edtTextProjectName;
     private EditText edtTextProjectDescription;
     private Button btnEditProjectConfirm;
+    private MemoryManager memoryManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,8 @@ public class EditProjectActivity extends AppCompatActivity {
 
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
         Project project = MainActivity.app.projects.get( parentProjectIndex );
+
+        memoryManager = new MemoryManager();
 
         edtTextProjectName = findViewById(R.id.edtTextProjectName);
         edtTextProjectName.setText( project.getName() );
@@ -48,6 +53,12 @@ public class EditProjectActivity extends AppCompatActivity {
 
                 project.editName( edtTextProjectName.getText().toString() );
                 project.editDescription( edtTextProjectDescription.getText().toString() );
+
+                try {
+                    memoryManager.saveDataToInternalStorage(EditProjectActivity.this);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 ProjectsActivity.getRecViewProjects().getAdapter().notifyDataSetChanged();
 
