@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -32,6 +34,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     private int parentCategoryIndex;
     private int parentCardIndex;
     private Task currTask;
+    private int taskIndex;
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -65,7 +68,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).deleteTask( tasks.indexOf( currTask ) );
+                MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).deleteTask( taskIndex );
                 dialog.cancel();
                 prevDialog.cancel();
 
@@ -84,11 +87,34 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         dialog.setContentView(R.layout.dialog_task_details);
         dialog.getWindow().setLayout( ((Activity) context).getWindow().peekDecorView().getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT );
 
-        /*Spinner spinner = (Spinner) dialog.findViewById( R.id.spinnerPriority );
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(dialog.getContext(),
-                R.array.priority_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*/
+        Spinner spinner = (Spinner) dialog.findViewById( R.id.spinnerPriority );
+        Integer[] priorities = { 1, 2, 3, 4, 5};
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(dialog.getContext(), R.layout.custom_dropdown_list, priorities );
+        spinner.setSelection( currTask.getPriority() - 1  );
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                currTask.setPriority((int) (spinner.getSelectedItem() ));
+                setid();
+            }
+
+            private void setid() {
+                spinner.setSelection( currTask.getPriority() - 1  );
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                spinner.setSelection( currTask.getPriority() - 1 );
+            }
+        });
+
+        spinner.setAdapter(adapter);
+        spinner.setSelection( currTask.getPriority() - 1 );
 
         TextView textName = (TextView) dialog.findViewById(R.id.txtTitleName);
         textName.setText( currTask.getName() );
@@ -100,12 +126,13 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent intent = new Intent( dialog.getContext(), EditTaskctivity.class );
+                Intent intent = new Intent( dialog.getContext(), EditTaskActivity.class );
                 intent.putExtra( "parentProjectIndex", parentProjectIndex );
                 intent.putExtra( "parentCategoryIndex", parentCategoryIndex );
                 intent.putExtra( "parentCardIndex", parentCardIndex );
-                //intent.putExtra( "parentTaskIndex", ) //PRZEKAZAC TASKA
-                startActivity( intent );*/
+                intent.putExtra( "parentTaskIndex", taskIndex );
+                dialog.getContext().startActivity( intent );
+                dialog.cancel();
             }
         });
 
@@ -125,12 +152,14 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position) {
         currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
 
-        holder.txtTaskName.setText( tasks.get( position ).getName() );
+        holder.txtTaskName.setText( currTask.getName() );
         holder.checkBoxTaskDone.setChecked(currTask.getStatus());
 
         holder.tasksListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currTask = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.get(tasks.indexOf(tasks.get(position)));
+                taskIndex = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).tasks.indexOf( tasks.get(position) );
                 showTaskDetails( TasksActivity.getRecViewTasks() );
             }
         });
@@ -142,6 +171,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
