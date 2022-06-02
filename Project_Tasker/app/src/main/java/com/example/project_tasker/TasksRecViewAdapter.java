@@ -1,10 +1,12 @@
 package com.example.project_tasker;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
@@ -64,11 +67,23 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
         return holder;
     }
 
+    public void changeBacgroundColor ( TasksRecViewAdapter.ViewHolder holder, int position ) {
+
+        if ( tasks.get( position ).getStatus() )
+            holder.itemView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.medium_gray));
+
+        else
+            holder.itemView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.white));
+    }
+
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull TasksRecViewAdapter.ViewHolder holder, int position)
     {
         holder.txtTaskName.setText(tasks.get( position ).getName());
         holder.checkBoxTaskDone.setChecked(tasks.get( position ).getStatus());
+
+        changeBacgroundColor( holder, position );
 
         taskIndex = tasks.indexOf( tasks.get(position) );
 
@@ -84,6 +99,8 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
             @Override
             public void onClick(View view) {
                 tasks.get( position ).changeStatus();
+
+                changeBacgroundColor( holder, position );
 
                 try {
                     memoryManager.saveDataToInternalStorage(context);
