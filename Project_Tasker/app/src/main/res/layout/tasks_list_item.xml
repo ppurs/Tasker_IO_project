@@ -31,6 +31,7 @@
             android:layout_centerVertical="true"
             android:scaleX="1.5"
             android:scaleY="1.5"
+            android:theme="@style/checkBoxStyle"
             android:id="@+id/checkBoxTaskDone"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"/>

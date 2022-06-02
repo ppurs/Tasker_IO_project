@@ -98,4 +98,58 @@ public class ProjectTests {
         assertEquals( projectToTests.categories.get( 0 ).getName(), "firstCat");
     }
 
+    @Test
+    public void generateStatistics_emptyProject() {
+        assertArrayEquals( new int[] {0, 0, 0, 0, 0} , projectToTests.generateStatistics() );
+    }
+
+    @Test
+    public void generateStatistics_projectWithAllTasksUndone() {
+        projectToTests.addCategory( "cat", "", 1 );
+        projectToTests.categories.get( 0 ).addCard( "card", "" );
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task1", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task2", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task3", "");
+        projectToTests.categories.get( 0 ).addCard( "card2", "" );
+        projectToTests.categories.get( 0 ).cards.get( 1 ).addTask( "task1", "");
+        projectToTests.categories.get( 0 ).cards.get( 1 ).addTask( "task2", "");
+
+        assertArrayEquals( new int[] {5, 2, 1, 0, 5 }, projectToTests.generateStatistics() );
+    }
+
+    @Test
+    public void generateStatistics_projectWithSeveralTasksUndone() {
+        projectToTests.addCategory( "cat", "", 1 );
+        projectToTests.categories.get( 0 ).addCard( "card", "" );
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task1", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task2", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task3", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).tasks.get( 0 ).changeStatus();
+        projectToTests.categories.get( 0 ).cards.get( 0 ).tasks.get( 1 ).changeStatus();
+        projectToTests.categories.get( 0 ).addCard( "card2", "" );
+        projectToTests.categories.get( 0 ).cards.get( 1 ).addTask( "task1", "");
+        projectToTests.categories.get( 0 ).cards.get( 1 ).addTask( "task2", "");
+
+        assertArrayEquals( new int[] {5, 2, 1, 2, 3 }, projectToTests.generateStatistics() );
+    }
+
+    @Test
+    public void generateStatistics_projectWithAllTasksDone() {
+        projectToTests.addCategory( "cat", "", 1 );
+        projectToTests.categories.get( 0 ).addCard( "card", "" );
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task1", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task2", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).addTask( "task3", "");
+        projectToTests.categories.get( 0 ).cards.get( 0 ).tasks.get( 0 ).changeStatus();
+        projectToTests.categories.get( 0 ).cards.get( 0 ).tasks.get( 1 ).changeStatus();
+        projectToTests.categories.get( 0 ).cards.get( 0 ).tasks.get( 2 ).changeStatus();
+        projectToTests.categories.get( 0 ).addCard( "card2", "" );
+        projectToTests.categories.get( 0 ).cards.get( 1 ).addTask( "task1", "");
+        projectToTests.categories.get( 0 ).cards.get( 1 ).addTask( "task2", "");
+        projectToTests.categories.get( 0 ).cards.get( 1 ).tasks.get( 0 ).changeStatus();
+        projectToTests.categories.get( 0 ).cards.get( 1 ).tasks.get( 1 ).changeStatus();
+
+        assertArrayEquals( new int[] {5, 2, 1, 5, 0 }, projectToTests.generateStatistics() );
+    }
+
 }

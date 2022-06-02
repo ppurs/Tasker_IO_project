@@ -72,4 +72,5 @@ class Project extends StructuralElement {
         int[] stats = {totalTasks, totalCards, totalCategories, tasksFinished, tasksUnfinished};
         return stats;
     }
+
 }
