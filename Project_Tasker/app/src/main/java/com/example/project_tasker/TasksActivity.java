@@ -202,11 +202,11 @@ public class TasksActivity extends AppCompatActivity {
                 dialog.cancel();
                 prevDialog.cancel();
 
-               /* try {
-                    memoryManager.saveDataToInternalStorage(context);
+               try {
+                    memoryManager.saveDataToInternalStorage(getApplicationContext());
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
 
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
 
@@ -239,11 +239,11 @@ public class TasksActivity extends AppCompatActivity {
                 currTask.setPriority((int) (spinner.getSelectedItem() ));
                 setid();
 
-                /*try {
-                    memoryManager.saveDataToInternalStorage(context);
+                try {
+                    memoryManager.saveDataToInternalStorage( getApplicationContext() );
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
 
                 MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex).sortTasksByPriority();
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
