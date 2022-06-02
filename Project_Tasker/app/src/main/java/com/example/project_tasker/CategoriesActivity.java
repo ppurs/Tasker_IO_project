@@ -164,49 +164,21 @@ public class CategoriesActivity extends AppCompatActivity {
         txtStatsTasksUnfinished = dialog.findViewById(R.id.txtStatsTasksUnfinished);
         txtStatsPercentageOfCompletion = dialog.findViewById(R.id.txtStatsPercentageOfCompletion);
 
-        int totalTasks = 0;
-        int totalCards = 0;
-        int totalCategories = 0;
-        int tasksFinished = 0;
-        int tasksUnfinished = 0;
-
-        for(Category category : project.categories)
-        {
-            totalCategories++;
-
-            for(Card card : category.cards)
-            {
-                totalCards++;
-
-                for(Task task : card.tasks)
-                {
-                    totalTasks++;
-
-                    if(task.getStatus())
-                    {
-                        tasksFinished++;
-                    }
-                    else
-                    {
-                        tasksUnfinished++;
-                    }
-                }
-            }
-        }
+        int[] stats = project.generateStatistics();
 
         String percentageOfCompletion = "N/A";
 
-        if (totalTasks > 0)
+        if (stats[0] > 0)
         {
-            percentageOfCompletion = Double.toString(Math.round(10000.0 * (double) tasksFinished / (double) totalTasks) / 100.0) + "%";
+            percentageOfCompletion = Double.toString(Math.round(10000.0 * (double) stats[3] / (double) stats[0]) / 100.0) + "%";
         }
 
         txtStatsProjectName.setText("Statistics for project: " + project.getName());
-        txtStatsTotalTasks.setText("Total tasks: " + totalTasks);
-        txtStatsTotalCards.setText("Total cards: " + totalCards);
-        txtStatsTotalCategories.setText("Total categories: " + totalCategories);
-        txtStatsTasksFinished.setText("Tasks finished: " + tasksFinished);
-        txtStatsTasksUnfinished.setText("Tasks unfinished: " + tasksUnfinished);
+        txtStatsTotalTasks.setText("Total tasks: " + stats[0]);
+        txtStatsTotalCards.setText("Total cards: " + stats[1]);
+        txtStatsTotalCategories.setText("Total categories: " + stats[2]);
+        txtStatsTasksFinished.setText("Tasks finished: " + stats[3]);
+        txtStatsTasksUnfinished.setText("Tasks unfinished: " + stats[4]);
         txtStatsPercentageOfCompletion.setText("Percentage of completion: " + percentageOfCompletion);
 
         dialog.show();
