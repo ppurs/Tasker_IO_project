@@ -2,9 +2,11 @@ package com.example.project_tasker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +46,7 @@ public class CategoriesRecViewAdapter extends RecyclerView.Adapter<CategoriesRec
     public void onBindViewHolder(@NonNull CategoriesRecViewAdapter.ViewHolder holder, int position) {
         holder.txtCategoryName.setText( categories.get( position ).getName() );
         holder.txtCategoryDescription.setText( categories.get( position ).getDescription() );
+        holder.frameLayout.setBackground( new ColorDrawable( categories.get(position).getColor() ) );
 
         holder.categoriesListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +70,7 @@ public class CategoriesRecViewAdapter extends RecyclerView.Adapter<CategoriesRec
         private TextView txtCategoryName;
         private TextView txtCategoryDescription;
         private MaterialCardView categoriesListItemParent;
+        private FrameLayout frameLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +78,7 @@ public class CategoriesRecViewAdapter extends RecyclerView.Adapter<CategoriesRec
             txtCategoryName = itemView.findViewById(R.id.txtCategoryName);
             txtCategoryDescription = itemView.findViewById(R.id.txtCategoryDescription);
             categoriesListItemParent = itemView.findViewById(R.id.categoriesListItemParent);
+            frameLayout = itemView.findViewById(R.id.frame);
         }
     }
 }
