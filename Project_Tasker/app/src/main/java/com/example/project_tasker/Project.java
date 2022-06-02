@@ -36,6 +36,40 @@ class Project extends StructuralElement {
     void deleteCategory( int index ){
         categories.remove( index );
     }
-    void showStatistics() {}
 
+    int[] generateStatistics()
+    {
+        int totalTasks = 0;
+        int totalCards = 0;
+        int totalCategories = 0;
+        int tasksFinished = 0;
+        int tasksUnfinished = 0;
+
+        for(Category category : categories)
+        {
+            totalCategories++;
+
+            for(Card card : category.cards)
+            {
+                totalCards++;
+
+                for(Task task : card.tasks)
+                {
+                    totalTasks++;
+
+                    if(task.getStatus())
+                    {
+                        tasksFinished++;
+                    }
+                    else
+                    {
+                        tasksUnfinished++;
+                    }
+                }
+            }
+        }
+
+        int[] stats = {totalTasks, totalCards, totalCategories, tasksFinished, tasksUnfinished};
+        return stats;
+    }
 }
