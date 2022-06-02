@@ -1,10 +1,13 @@
 package com.example.project_tasker;
 
+import static androidx.appcompat.content.res.AppCompatResources.getColorStateList;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +72,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
     {
         holder.txtTaskName.setText(tasks.get( position ).getName());
         holder.checkBoxTaskDone.setChecked(tasks.get( position ).getStatus());
+        holder.checkBoxTaskDone.setButtonTintList(ColorStateList.valueOf(MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).getColor()));
 
         taskIndex = tasks.indexOf( tasks.get(position) );
 
