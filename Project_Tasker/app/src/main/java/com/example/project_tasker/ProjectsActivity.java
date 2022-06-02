@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -41,8 +42,17 @@ public class ProjectsActivity extends AppCompatActivity {
         fabAddProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProjectsActivity.this, AddProjectActivity.class);
-                startActivity(intent);
+                if (MainActivity.app.projects.size() < MainActivity.app.MAX_PROJECTS_COUNT)
+                {
+                    Intent intent = new Intent(ProjectsActivity.this, AddProjectActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),
+                            "Limit of the number of created projects (" + MainActivity.app.MAX_PROJECTS_COUNT + ") reached",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

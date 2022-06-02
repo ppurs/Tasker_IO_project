@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 class App {
     ArrayList<Project> projects;
+    final int MAX_PROJECTS_COUNT = 20;
 
     public App()
     {
