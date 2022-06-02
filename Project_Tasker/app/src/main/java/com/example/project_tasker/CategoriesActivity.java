@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -114,6 +115,7 @@ public class CategoriesActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                Toast.makeText(getApplicationContext(),"Project deleted successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });

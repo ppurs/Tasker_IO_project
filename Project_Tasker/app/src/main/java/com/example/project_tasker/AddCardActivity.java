@@ -58,6 +58,7 @@ public class AddCardActivity extends AppCompatActivity {
                 }
 
                 CardsActivity.getRecViewCards().getAdapter().notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"Card added successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });

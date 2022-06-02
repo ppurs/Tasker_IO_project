@@ -58,6 +58,7 @@ public class AddProjectActivity extends AppCompatActivity {
                 }
 
                 ProjectsActivity.getRecViewProjects().getAdapter().notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"Project added successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });

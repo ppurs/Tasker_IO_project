@@ -119,6 +119,7 @@ public class CardsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                Toast.makeText(getApplicationContext(),"Category deleted successfully",Toast.LENGTH_SHORT ).show();
                 finish();
 
             }

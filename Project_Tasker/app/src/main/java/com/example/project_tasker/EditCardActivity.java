@@ -67,7 +67,7 @@ public class EditCardActivity extends AppCompatActivity {
                 }
 
                 CardsActivity.getRecViewCards().getAdapter().notifyDataSetChanged();
-
+                Toast.makeText(getApplicationContext(),"Card edited successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });

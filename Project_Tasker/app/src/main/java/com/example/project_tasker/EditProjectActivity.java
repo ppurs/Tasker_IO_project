@@ -61,7 +61,7 @@ public class EditProjectActivity extends AppCompatActivity {
                 }
 
                 ProjectsActivity.getRecViewProjects().getAdapter().notifyDataSetChanged();
-
+                Toast.makeText(getApplicationContext(),"Project edited successfully",Toast.LENGTH_SHORT ).show();
                 finish();
 
             }

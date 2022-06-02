@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -138,6 +139,7 @@ public class TasksActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                Toast.makeText(getApplicationContext(),"Card deleted successfully",Toast.LENGTH_SHORT ).show();
                 finish();
 
             }
@@ -209,6 +211,7 @@ public class TasksActivity extends AppCompatActivity {
                 }
 
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"Task deleted successfully",Toast.LENGTH_SHORT ).show();
 
             }
         });

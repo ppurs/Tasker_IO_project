@@ -226,6 +226,7 @@ public class AddCategoryActivity extends AppCompatActivity {
                 }
               
                 CategoriesActivity.getRecViewCategories().getAdapter().notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"Category added successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });

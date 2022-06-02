@@ -61,6 +61,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 parentCard.sortTasksByPriority();
 
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"Task added successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });

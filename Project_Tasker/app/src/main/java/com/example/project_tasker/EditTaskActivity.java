@@ -72,7 +72,7 @@ public class EditTaskActivity extends AppCompatActivity {
                 }
 
                 TasksActivity.getRecViewTasks().getAdapter().notifyDataSetChanged();
-
+                Toast.makeText(getApplicationContext(),"Task edited successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });

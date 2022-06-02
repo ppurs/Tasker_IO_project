@@ -231,6 +231,7 @@ public class EditCategoryActivity extends AppCompatActivity {
                 }
 
                 CategoriesActivity.getRecViewCategories().getAdapter().notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"Category edited successfully",Toast.LENGTH_SHORT ).show();
                 finish();
             }
         });
