@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
@@ -43,10 +44,27 @@ public class CardsRecViewAdapter extends RecyclerView.Adapter<CardsRecViewAdapte
         return holder;
     }
 
+    public void changeBacgroundColor ( CardsRecViewAdapter.ViewHolder holder, int position ) {
+        boolean cardStatus = true;
+
+        for ( Task task: cards.get( position ).tasks ) {
+            if (task.getStatus()) {
+                holder.itemView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.medium_gray));
+            }
+
+            else {
+                holder.itemView.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.white));
+                cardStatus = false;
+                break;
+            }
+        }
+    }
+
     @Override
     public void onBindViewHolder(@NonNull CardsRecViewAdapter.ViewHolder holder, int position) {
         holder.txtCardName.setText( cards.get( position ).getName() );
         holder.txtCardDescription.setText( cards.get( position ).getDescription() );
+        changeBacgroundColor( holder, position);
 
         holder.cardsListItemParent.setOnClickListener(new View.OnClickListener() {
             @Override

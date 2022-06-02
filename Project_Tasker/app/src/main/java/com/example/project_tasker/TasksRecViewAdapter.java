@@ -105,6 +105,7 @@ public class TasksRecViewAdapter extends RecyclerView.Adapter<TasksRecViewAdapte
                 tasks.get( position ).changeStatus();
 
                 changeBacgroundColor( holder, position );
+                CardsActivity.getRecViewCards().getAdapter().notifyDataSetChanged();
 
                 try {
                     memoryManager.saveDataToInternalStorage(context);

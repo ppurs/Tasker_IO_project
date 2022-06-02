@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#efefef</color>
-    <color name="medium_gray">#cdcdcd</color>
+    <color name="medium_gray">#dadada</color>
 
     <color name="one_button_picker">#FFCC00</color>
     <color name="two_button_picker">#ef6c00</color>

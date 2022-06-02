@@ -40,7 +40,7 @@ public class CardsActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        this.setTitle( "Category: " + parentCategory.getName() );
+        this.setTitle( parentCategory.getName() );
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable( parentCategory.getColor() ));
 
         if ( textName != null && textDescription != null ) {
@@ -73,7 +73,7 @@ public class CardsActivity extends AppCompatActivity {
 
         parentCategoryIndex = (int) getIntent().getExtras().get("parentCategoryIndex");
         parentCategory = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex);
-        this.setTitle( "Category: " + parentCategory.getName());
+        this.setTitle( parentCategory.getName());
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable( parentCategory.getColor() ));
 
         recViewCards = findViewById(R.id.recViewCards);

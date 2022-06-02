@@ -42,7 +42,7 @@ public class CategoriesActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        this.setTitle( "Project: " + parentProject.getName() );
+        this.setTitle( parentProject.getName() );
 
         if ( textName != null && textDescription != null ) {
             textName.setText( parentProject.getName() );
@@ -71,7 +71,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
         parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
         parentProject = MainActivity.app.projects.get(parentProjectIndex);
-        this.setTitle( "Project: " + parentProject.getName() );
+        this.setTitle( parentProject.getName() );
 
 
         recViewCategories = findViewById(R.id.recViewCategories);
