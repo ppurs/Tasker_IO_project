@@ -91,7 +91,7 @@ public class TasksActivity extends AppCompatActivity {
         parentCardIndex = (int) getIntent().getExtras().get("parentCardIndex");
         parentCard = MainActivity.app.projects.get(parentProjectIndex).categories.get(parentCategoryIndex).cards.get(parentCardIndex);
 
-        this.setTitle( parentProject.getName() + ", " + parentCategory.getName() + ", " + parentCard.getName());
+        this.setTitle( parentCard.getName());
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable( parentCategory.getColor() ));
 
 
