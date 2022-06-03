@@ -97,4 +97,62 @@ public class CardTests {
         assertEquals( cardToTests.tasks.get( 0 ).getName(), "firstTask");
     }
 
+    @Test
+    public void sortTaskByPriority_allPrioritiesTheSame() {
+        cardToTests.addTask( "task1", "description" );
+        cardToTests.addTask( "task2", "description" );
+        cardToTests.addTask( "task3", "description" );
+
+        cardToTests.sortTasksByPriority();
+
+        assertEquals( "task1", cardToTests.tasks.get( 0 ).getName());
+        assertEquals( "task2", cardToTests.tasks.get( 1 ).getName());
+        assertEquals( "task3", cardToTests.tasks.get( 2 ).getName());
+    }
+
+    @Test
+    public void sortTaskByPriority_firstPriorityChangedToHigher() {
+        cardToTests.addTask( "task1", "description" );
+        cardToTests.addTask( "task2", "description" );
+        cardToTests.addTask( "task3", "description" );
+        cardToTests.tasks.get( 0 ).setPriority( 3 );
+
+        cardToTests.sortTasksByPriority();
+
+        assertEquals( "task1", cardToTests.tasks.get( 2 ).getName());
+        assertEquals( "task2", cardToTests.tasks.get( 0 ).getName());
+        assertEquals( "task3", cardToTests.tasks.get( 1 ).getName());
+    }
+
+    @Test
+    public void sortTaskByPriority_lastPriorityChangedToLower() {
+        cardToTests.addTask( "task1", "description" );
+        cardToTests.addTask( "task2", "description" );
+        cardToTests.addTask( "task3", "description" );
+        cardToTests.tasks.get( 0 ).setPriority( 2 );
+        cardToTests.tasks.get( 1 ).setPriority( 2 );
+        cardToTests.tasks.get( 2 ).setPriority( 1 );
+
+        cardToTests.sortTasksByPriority();
+
+        assertEquals( "task1", cardToTests.tasks.get( 1 ).getName());
+        assertEquals( "task2", cardToTests.tasks.get( 2 ).getName());
+        assertEquals( "task3", cardToTests.tasks.get( 0 ).getName());
+    }
+
+    @Test
+    public void sortTaskByPriority_middlePriorityChanged() {
+        cardToTests.addTask( "task1", "description" );
+        cardToTests.addTask( "task2", "description" );
+        cardToTests.addTask( "task3", "description" );
+        cardToTests.tasks.get( 1 ).setPriority( 5 );
+
+        cardToTests.sortTasksByPriority();
+
+        assertEquals( "task1", cardToTests.tasks.get( 0 ).getName());
+        assertEquals( "task2", cardToTests.tasks.get( 2 ).getName());
+        assertEquals( "task3", cardToTests.tasks.get( 1 ).getName());
+    }
+
+
 }
