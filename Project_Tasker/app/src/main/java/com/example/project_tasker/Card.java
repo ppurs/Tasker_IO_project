@@ -45,7 +45,7 @@ class Card extends StructuralElement {
         Collections.sort(tasks, new Comparator<Task>() {
             @Override
             public int compare(Task task1, Task task2) {
-                return task1.getPriority() - task2.getPriority();
+                return task2.getPriority() - task1.getPriority();
             }
         });
     }
