@@ -12,8 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class AddCategoryActivity extends AppCompatActivity {

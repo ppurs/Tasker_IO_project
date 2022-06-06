@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class AddTaskActivity extends AppCompatActivity {
