@@ -11,11 +11,11 @@ Naszą motywacją do jej stworzenia było umożliwienie im przejrzystego podzia�
 Zależało nam, aby mogło z niej skorzystać jak najwięcej osób, stąd wybór wersji Android 5.0 Lollipop - kompatybilnej z ok. 98% urządzeń.
 
 ### Funkcjonalności
-  :heavy_check_mark: dodawanie nowych projektów, kategorii, kart, zadań
-  :heavy_check_mark: edycja/usuwanie już istniejących
-  :heavy_check_mark: oznaczanie zadań jako wykonane
-  :heavy_check_mark: sprawdzanie statystyk ukazujących stopnień wykonania projektu
-  :heavy_check_mark: wyróżnianie kategorii poprzez nadanie koloru
+  :heavy_check_mark: dodawanie nowych projektów, kategorii, kart, zadań \
+  :heavy_check_mark: edycja/usuwanie już istniejących \
+  :heavy_check_mark: oznaczanie zadań jako wykonane \
+  :heavy_check_mark: sprawdzanie statystyk ukazujących stopnień wykonania projektu \
+  :heavy_check_mark: wyróżnianie kategorii poprzez nadanie koloru \
 
 ### Technologie
   +Java
