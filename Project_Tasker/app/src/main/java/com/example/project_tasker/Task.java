@@ -1,7 +1,6 @@
 package com.example.project_tasker;
 
 class Task extends StructuralElement {
-    Card parentCard;
     boolean status = false;
     int priority = 1;
     Date deadline;
