@@ -18,8 +18,8 @@ Zależało nam, aby mogło z niej skorzystać jak najwięcej osób, stąd wybór
   :heavy_check_mark: wyróżnianie kategorii poprzez nadanie koloru
 
 ### Technologie
-  +Java
+  + Java
 
 ## Autorzy
-  +Szymon Majewski \
-  +Paulina Purs
+  + Szymon Majewski \
+  + Paulina Purs
