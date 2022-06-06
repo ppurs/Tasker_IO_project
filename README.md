@@ -15,11 +15,11 @@ Zależało nam, aby mogło z niej skorzystać jak najwięcej osób, stąd wybór
   :heavy_check_mark: edycja/usuwanie już istniejących \
   :heavy_check_mark: oznaczanie zadań jako wykonane \
   :heavy_check_mark: sprawdzanie statystyk ukazujących stopnień wykonania projektu \
-  :heavy_check_mark: wyróżnianie kategorii poprzez nadanie koloru \
+  :heavy_check_mark: wyróżnianie kategorii poprzez nadanie koloru
 
 ### Technologie
   +Java
 
 ## Autorzy
-  +Szymon Majewski
+  +Szymon Majewski \
   +Paulina Purs
