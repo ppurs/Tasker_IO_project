@@ -21,5 +21,5 @@ Zależało nam, aby mogło z niej skorzystać jak najwięcej osób, stąd wybór
   + Java
 
 ## Autorzy
-  + Szymon Majewski \
+  + Szymon Majewski
   + Paulina Purs
