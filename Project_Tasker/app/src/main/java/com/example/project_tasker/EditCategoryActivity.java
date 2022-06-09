@@ -177,7 +177,7 @@ public class EditCategoryActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Edit new category");
+        setTitle("Edit category");
         setContentView(R.layout.activity_edit_category);
 
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
