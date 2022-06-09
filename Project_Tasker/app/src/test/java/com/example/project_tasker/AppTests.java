@@ -6,11 +6,6 @@ import static org.junit.Assert.*;
 public class AppTests {
     private App appToTests = App.getInstance();
 
-    @Before
-    public void setUp () {
-        appToTests = App.getInstance();
-    }
-
     @Test
     public void addProject_ToEmptyApp(){
         appToTests.projects.clear();
