@@ -4,41 +4,37 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AppTests {
-    private App appToTests;
+    private App appToTests = App.getInstance();
 
     @Before
     public void setUp () {
-        appToTests = new App();
+        appToTests = App.getInstance();
     }
-
-    @Test
-    public void createApp(){
-        assertNotNull( appToTests );
-    }
-
-    @Test
-    public void appIsEmpty() { assertTrue( appToTests.projects.isEmpty() ); }
 
     @Test
     public void addProject_ToEmptyApp(){
+        appToTests.projects.clear();
         appToTests.addProject( "firstProject", "description" );
         assertEquals( appToTests.projects.get( 0 ).name, "firstProject" );
     }
 
     @Test
     public void validation_UniqueName() {
+        appToTests.projects.clear();
         appToTests.addProject( "Unique", "desc");
         assertTrue( appToTests.validation( "otherUnique" ) );
     }
 
     @Test
     public void validation_NOTUniqueName() {
+        appToTests.projects.clear();
         appToTests.addProject( "notUnique", "desc");
         assertFalse( appToTests.validation( "notUnique" ) );
     }
 
     @Test
     public void addProject_UniqueName() {
+        appToTests.projects.clear();
         appToTests.addProject( "uniqueProject", "desc");
         appToTests.addProject( "otherUniqueProject", "desc");
         assertEquals( appToTests.projects.get( appToTests.projects.size() - 1  ).name, "otherUniqueProject" );
@@ -46,6 +42,7 @@ public class AppTests {
 
     @Test
     public void addProject_NOTUniqueName() {
+        appToTests.projects.clear();
         appToTests.addProject( "notUniqueProject", "desc");
         appToTests.addProject( "tempProject", "desc");
         appToTests.addProject( "notUniqueProject", "desc");
@@ -54,6 +51,7 @@ public class AppTests {
 
     @Test
     public void deleteProject_removeFirst() {
+        appToTests.projects.clear();
         appToTests.addProject( "firstProject", "description" );
 
         appToTests.deleteProject( 0 );
@@ -62,6 +60,7 @@ public class AppTests {
 
     @Test
     public void deleteProject_removeFromMiddle() {
+        appToTests.projects.clear();
         appToTests.addProject( "firstProject", "description" );
         appToTests.addProject( "secondProject", "description" );
         appToTests.addProject( "thirdProject", "description" );
@@ -74,6 +73,7 @@ public class AppTests {
 
     @Test
     public void deleteProject_removeLast() {
+        appToTests.projects.clear();
         appToTests.addProject( "firstProject", "description" );
         appToTests.addProject( "secondProject", "description" );
 
@@ -81,6 +81,4 @@ public class AppTests {
         assertEquals( appToTests.projects.size(), 1 );
         assertEquals( appToTests.projects.get( 0 ).getName(), "firstProject");
     }
-
-
 }

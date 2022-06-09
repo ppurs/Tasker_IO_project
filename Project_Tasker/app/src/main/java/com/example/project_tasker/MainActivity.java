@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MemoryManager memoryManager = new MemoryManager();
-        app = new App();
+        app = App.getInstance();
 
         try {
             memoryManager.displayFileContents("appData.txt", this);

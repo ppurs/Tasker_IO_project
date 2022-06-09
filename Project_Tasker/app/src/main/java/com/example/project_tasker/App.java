@@ -6,8 +6,9 @@ import java.util.ArrayList;
 class App {
     ArrayList<Project> projects;
     final int MAX_PROJECTS_COUNT = 20;
+    private static App instance = null;
 
-    public App()
+    private App()
     {
         projects = new ArrayList<>();
     }
@@ -19,6 +20,16 @@ class App {
             }
         }
         return true;
+    }
+
+    public static App getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new App();
+        }
+
+        return instance;
     }
 
     boolean addProject(String projectName, String projectDescription ) {
