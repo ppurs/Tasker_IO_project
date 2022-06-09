@@ -177,7 +177,7 @@ public class EditCategoryActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Add new category");
+        setTitle("Edit category");
         setContentView(R.layout.activity_edit_category);
 
         int parentProjectIndex = (int) getIntent().getExtras().get("parentProjectIndex");
@@ -207,13 +207,13 @@ public class EditCategoryActivity extends AppCompatActivity {
         btnAddCategoryConfirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (edtTextCategoryName.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Project name is required.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Category name is required.", Toast.LENGTH_SHORT).show();
 
                     return;
                 }
 
-                if (!MainActivity.app.validation(edtTextCategoryName.getText().toString()) && !edtTextCategoryName.getText().toString().equals(category.getName())) {
-                    Toast.makeText(getApplicationContext(), "Project with this name already exists.", Toast.LENGTH_SHORT).show();
+                if (!parentProject.validation(edtTextCategoryName.getText().toString()) && !edtTextCategoryName.getText().toString().equals(category.getName())) {
+                    Toast.makeText(getApplicationContext(), "Category with this name already exists.", Toast.LENGTH_SHORT).show();
 
                     return;
                 }
